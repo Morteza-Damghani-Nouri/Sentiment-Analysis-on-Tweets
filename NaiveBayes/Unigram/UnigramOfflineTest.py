@@ -38,7 +38,6 @@ def dictionary_loader():
     total_number_of_neutral_words = 0
 
     # Loading positive dictionary
-    positive_test_file = open("positive_test_file.txt", "wt")
     while True:
         line = positive_dictionary_file.readline()
         if line == "":
@@ -60,13 +59,10 @@ def dictionary_loader():
             count += line_list[i]
             i += 1
         count = int(count)
-        positive_test_file.write(str(count) + "\n")
         positive_dictionary[word] = count
         total_number_of_positive_words += count
 
-    positive_test_file.close()
     # Loading negative dictionary
-    negative_test_file = open("negative_test_file.txt", "wt")
     while True:
         line = negative_dictionary_file.readline()
         if line == "":
@@ -88,13 +84,10 @@ def dictionary_loader():
             count += line_list[i]
             i += 1
         count = int(count)
-        negative_test_file.write(str(count) + "\n")
         negative_dictionary[word] = count
         total_number_of_negative_words += count
-    negative_test_file.close()
 
     # Loading neutral dictionary
-    neutral_test_file = open("neutral_test_file.txt", "wt")
     while True:
         line = neutral_dictionary_file.readline()
         if line == "":
@@ -116,10 +109,9 @@ def dictionary_loader():
             count += line_list[i]
             i += 1
         count = int(count)
-        neutral_test_file.write(str(count) + "\n")
         neutral_dictionary[word] = count
         total_number_of_neutral_words += count
-    neutral_test_file.close()
+
 
     print("The length of positive tweets dictionary is: " + str(len(positive_dictionary)))
     print("Total number of words in positive words dictionary is: " + str(total_number_of_positive_words))
