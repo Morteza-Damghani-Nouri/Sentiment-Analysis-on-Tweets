@@ -1,298 +1,1184 @@
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Positive
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Positive
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Negative
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Positive
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Positive
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Positive
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Positive
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Positive
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Negative
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
-Neutral
+Positive probability: -39.34163689942263
+Negative probability: -41.03747356833508
+Subtraction: 1.6958366689124489
+==========
+Positive probability: -45.95703493211629
+Negative probability: -47.45391473262973
+Subtraction: 1.4968798005134403
+==========
+Positive probability: -64.10692062987789
+Negative probability: -66.10319983915106
+Subtraction: 1.996279209273169
+==========
+Positive probability: -31.850956009979296
+Negative probability: -31.906593424090563
+Subtraction: 0.05563741411126699
+==========
+Positive probability: -19.46456650295425
+Negative probability: -19.683606385021264
+Subtraction: 0.2190398820670154
+==========
+Positive probability: -18.428403700389765
+Negative probability: -18.70699972878775
+Subtraction: 0.2785960283979847
+==========
+Positive probability: -25.264844423462026
+Negative probability: -26.324732716383757
+Subtraction: 1.0598882929217304
+==========
+Positive probability: -27.951171468167257
+Negative probability: -28.62949022982263
+Subtraction: 0.6783187616553725
+==========
+Positive probability: -27.01595522018584
+Negative probability: -16.35662112407319
+Subtraction: 10.659334096112651
+==========
+Positive probability: -27.327426002763755
+Negative probability: -27.596042976804053
+Subtraction: 0.26861697404029883
+==========
+Positive probability: -27.026396007099773
+Negative probability: -27.623481225150993
+Subtraction: 0.5970852180512196
+==========
+Positive probability: -33.43199270462301
+Negative probability: -33.509806426617494
+Subtraction: 0.077813721994481
+==========
+Positive probability: -11.488309092000064
+Negative probability: -11.738901094314468
+Subtraction: 0.2505920023144039
+==========
+Positive probability: -33.64815803037865
+Negative probability: -34.73399523967154
+Subtraction: 1.0858372092928903
+==========
+Positive probability: -70.11902551440429
+Negative probability: -71.11557587102816
+Subtraction: 0.9965503566238709
+==========
+Positive probability: -67.85479140605429
+Negative probability: -57.90435513258309
+Subtraction: 9.950436273471198
+==========
+Positive probability: -38.852334017842104
+Negative probability: -39.34175763877324
+Subtraction: 0.48942362093113445
+==========
+Positive probability: -32.57077620413479
+Negative probability: -34.24057399862603
+Subtraction: 1.6697977944912452
+==========
+Positive probability: -17.409574170767375
+Negative probability: -18.253672880516245
+Subtraction: 0.8440987097488701
+==========
+Positive probability: -7.9261775700656685
+Negative probability: -8.114007087254162
+Subtraction: 0.1878295171884936
+==========
+Positive probability: -42.0148355651048
+Negative probability: -44.229872295522966
+Subtraction: 2.215036730418163
+==========
+Positive probability: -55.743158965156866
+Negative probability: -57.62703614634804
+Subtraction: 1.883877181191174
+==========
+Positive probability: -68.56881205203257
+Negative probability: -70.58643117644006
+Subtraction: 2.0176191244074886
+==========
+Positive probability: -26.31839200843784
+Negative probability: -27.74792788365511
+Subtraction: 1.4295358752172689
+==========
+Positive probability: -35.229112005743346
+Negative probability: -36.42344498981688
+Subtraction: 1.194332984073533
+==========
+Positive probability: -63.63268664157332
+Negative probability: -60.41780222391171
+Subtraction: 3.214884417661615
+==========
+Positive probability: -39.89430982627874
+Negative probability: -41.24632125506556
+Subtraction: 1.3520114287868168
+==========
+Positive probability: -59.943653074438416
+Negative probability: -49.241581104643984
+Subtraction: 10.702071969794432
+==========
+Positive probability: -33.816543048124615
+Negative probability: -33.73383042773389
+Subtraction: 0.08271262039072269
+==========
+Positive probability: -21.170249666332307
+Negative probability: -21.19961551705896
+Subtraction: 0.0293658507266521
+==========
+Positive probability: -74.08577504482786
+Negative probability: -75.30921255121488
+Subtraction: 1.2234375063870289
+==========
+Positive probability: -60.02307153651896
+Negative probability: -59.964013206957915
+Subtraction: 0.059058329561047174
+==========
+Positive probability: -30.322991636295765
+Negative probability: -24.928984976315647
+Subtraction: 5.394006659980118
+==========
+Positive probability: -35.64273207880028
+Negative probability: -35.94291969321529
+Subtraction: 0.30018761441500885
+==========
+Positive probability: -29.77813830195573
+Negative probability: -29.89865960023469
+Subtraction: 0.12052129827895897
+==========
+Positive probability: -59.63493355076193
+Negative probability: -59.08418878130031
+Subtraction: 0.5507447694616161
+==========
+Positive probability: -8.902092477212435
+Negative probability: -8.106041663050837
+Subtraction: 0.7960508141615978
+==========
+Positive probability: -22.658776162170216
+Negative probability: -22.888421124441138
+Subtraction: 0.22964496227092113
+==========
+Positive probability: -21.6975149442058
+Negative probability: -21.707218181535165
+Subtraction: 0.009703237329365066
+==========
+Positive probability: -33.64429998850135
+Negative probability: -34.29849720377395
+Subtraction: 0.6541972152725961
+==========
+Positive probability: -22.382435702901667
+Negative probability: -22.323971723520636
+Subtraction: 0.058463979381031095
+==========
+Positive probability: -20.311317729310357
+Negative probability: -20.346521977982967
+Subtraction: 0.03520424867260985
+==========
+Positive probability: -27.309598509310874
+Negative probability: -26.952804786320694
+Subtraction: 0.3567937229901794
+==========
+Positive probability: -20.485336923752712
+Negative probability: -21.466176783185244
+Subtraction: 0.9808398594325318
+==========
+Positive probability: -22.739597590527026
+Negative probability: -22.59355560089094
+Subtraction: 0.1460419896360854
+==========
+Positive probability: -11.52909079567597
+Negative probability: -17.316883391389215
+Subtraction: 5.7877925957132454
+==========
+Positive probability: -23.644021733955793
+Negative probability: -23.788528996671033
+Subtraction: 0.14450726271524061
+==========
+Positive probability: -18.484341884362934
+Negative probability: -18.72562351101606
+Subtraction: 0.24128162665312658
+==========
+Positive probability: -35.48824322590717
+Negative probability: -36.62517311440064
+Subtraction: 1.1369298884934693
+==========
+Positive probability: -14.833964522253074
+Negative probability: -15.781506290556361
+Subtraction: 0.947541768303287
+==========
+Positive probability: -8.807945986237817
+Negative probability: -3.483734099428734
+Subtraction: 5.324211886809083
+==========
+Positive probability: -10.608749535523778
+Negative probability: -10.842489905367692
+Subtraction: 0.23374036984391466
+==========
+Positive probability: -6.91771131993146
+Negative probability: -7.39863378254379
+Subtraction: 0.4809224626123303
+==========
+Positive probability: -45.36450602964365
+Negative probability: -45.757292324403224
+Subtraction: 0.39278629475957416
+==========
+Positive probability: -4.841390497830719
+Negative probability: -5.334272224961347
+Subtraction: 0.4928817271306274
+==========
+Positive probability: -21.64885842201814
+Negative probability: -22.859357264038508
+Subtraction: 1.2104988420203675
+==========
+Positive probability: -43.30272505465285
+Negative probability: -50.16785518261048
+Subtraction: 6.865130127957627
+==========
+Positive probability: -23.515593643473743
+Negative probability: -23.82399304528028
+Subtraction: 0.30839940180653613
+==========
+Positive probability: -15.06440413932554
+Negative probability: -15.174204258266794
+Subtraction: 0.10980011894125496
+==========
+Positive probability: -31.879639522723533
+Negative probability: -32.278453898815016
+Subtraction: 0.39881437609148307
+==========
+Positive probability: -22.63616027993737
+Negative probability: -22.613979895725247
+Subtraction: 0.022180384212123982
+==========
+Positive probability: -51.89830300095482
+Negative probability: -47.70917104321138
+Subtraction: 4.189131957743442
+==========
+Positive probability: -68.84398474077203
+Negative probability: -70.14409895738318
+Subtraction: 1.3001142166111492
+==========
+Positive probability: -23.401331669831464
+Negative probability: -23.97445066646697
+Subtraction: 0.5731189966355075
+==========
+Positive probability: -51.55286535178985
+Negative probability: -62.96682798575363
+Subtraction: 11.413962633963784
+==========
+Positive probability: -33.84956033739687
+Negative probability: -34.12983323935121
+Subtraction: 0.2802729019543335
+==========
+Positive probability: -26.187469996079418
+Negative probability: -27.59783356256472
+Subtraction: 1.4103635664853016
+==========
+Positive probability: -42.39218380404189
+Negative probability: -41.21944964154702
+Subtraction: 1.1727341624948693
+==========
+Positive probability: -16.70847860109656
+Negative probability: -16.377279276929617
+Subtraction: 0.331199324166942
+==========
+Positive probability: -21.856643871529208
+Negative probability: -23.3136520858027
+Subtraction: 1.4570082142734933
+==========
+Positive probability: -31.955166204633336
+Negative probability: -32.89893892179165
+Subtraction: 0.9437727171583106
+==========
+Positive probability: -16.230395874902634
+Negative probability: -16.270322059057374
+Subtraction: 0.039926184154740696
+==========
+Positive probability: -47.6658829114497
+Negative probability: -47.856790175830746
+Subtraction: 0.1909072643810461
+==========
+Positive probability: -22.426446551670338
+Negative probability: -22.349515477586525
+Subtraction: 0.07693107408381294
+==========
+Positive probability: -15.839150070559347
+Negative probability: -16.065473709059212
+Subtraction: 0.22632363849986525
+==========
+Positive probability: -22.0233474177761
+Negative probability: -22.723944631413257
+Subtraction: 0.7005972136371561
+==========
+Positive probability: -11.629044325847632
+Negative probability: -11.847585997173354
+Subtraction: 0.21854167132572222
+==========
+Positive probability: -19.948696273690032
+Negative probability: -19.917843672221224
+Subtraction: 0.030852601468808416
+==========
+Positive probability: -41.63860957512434
+Negative probability: -42.78066403850928
+Subtraction: 1.1420544633849374
+==========
+Positive probability: -18.982634173909037
+Negative probability: -19.901135199120674
+Subtraction: 0.9185010252116363
+==========
+Positive probability: -46.12966179353021
+Negative probability: -39.78351830696977
+Subtraction: 6.346143486560443
+==========
+Positive probability: -27.314304369385088
+Negative probability: -27.660413567561587
+Subtraction: 0.34610919817649943
+==========
+Positive probability: -9.129204514597422
+Negative probability: -9.207236015240225
+Subtraction: 0.07803150064280295
+==========
+Positive probability: -16.372761083213902
+Negative probability: -17.375597166377272
+Subtraction: 1.0028360831633698
+==========
+Positive probability: -17.743170755418518
+Negative probability: -12.156424165479867
+Subtraction: 5.586746589938651
+==========
+Positive probability: -41.88430220758034
+Negative probability: -42.4700804103387
+Subtraction: 0.5857782027583625
+==========
+Positive probability: -71.75591716035687
+Negative probability: -73.52199109996772
+Subtraction: 1.7660739396108482
+==========
+Positive probability: -40.76000958178216
+Negative probability: -42.38680076664264
+Subtraction: 1.6267911848604797
+==========
+Positive probability: -57.20261137924597
+Negative probability: -58.876079260695285
+Subtraction: 1.6734678814493122
+==========
+Positive probability: -41.96027470700028
+Negative probability: -43.82465514406984
+Subtraction: 1.8643804370695563
+==========
+Positive probability: -41.78629432390511
+Negative probability: -41.80345383973281
+Subtraction: 0.017159515827700034
+==========
+Positive probability: -23.78071392373145
+Negative probability: -23.90682986916223
+Subtraction: 0.12611594543077942
+==========
+Positive probability: -64.2049217470257
+Negative probability: -64.88443669329955
+Subtraction: 0.679514946273855
+==========
+Positive probability: -16.959471269092752
+Negative probability: -16.6311553963469
+Subtraction: 0.3283158727458506
+==========
+Positive probability: -22.884806745606795
+Negative probability: -23.10816177653109
+Subtraction: 0.22335503092429576
+==========
+Positive probability: -12.14506538650273
+Negative probability: -13.106663368790288
+Subtraction: 0.9615979822875591
+==========
+Positive probability: -35.414870398376756
+Negative probability: -35.10331288478319
+Subtraction: 0.3115575135935629
+==========
+Positive probability: -23.179114533105306
+Negative probability: -23.28781966072055
+Subtraction: 0.10870512761524509
+==========
+Positive probability: -30.314753411456728
+Negative probability: -29.65023916217655
+Subtraction: 0.6645142492801774
+==========
+Positive probability: -42.71957349365416
+Negative probability: -43.76260745867176
+Subtraction: 1.0430339650175995
+==========
+Positive probability: -18.203716903865523
+Negative probability: -25.271541215278347
+Subtraction: 7.067824311412824
+==========
+Positive probability: -20.788182828916387
+Negative probability: -26.84913854594624
+Subtraction: 6.060955717029852
+==========
+Positive probability: -63.36194379167466
+Negative probability: -64.0265637595452
+Subtraction: 0.6646199678705358
+==========
+Positive probability: -33.67261558207584
+Negative probability: -31.888437305467303
+Subtraction: 1.7841782766085394
+==========
+Positive probability: -14.638389160300752
+Negative probability: -14.571219739384805
+Subtraction: 0.06716942091594724
+==========
+Positive probability: -17.376486882304913
+Negative probability: -17.234387593516768
+Subtraction: 0.14209928878814537
+==========
+Positive probability: -28.712887755796398
+Negative probability: -23.64510085977477
+Subtraction: 5.067786896021627
+==========
+Positive probability: -19.81536876833844
+Negative probability: -20.230773489335967
+Subtraction: 0.41540472099752535
+==========
+Positive probability: -47.74445355775636
+Negative probability: -48.14412519225825
+Subtraction: 0.39967163450189247
+==========
+Positive probability: -82.36639929177687
+Negative probability: -83.34063584900376
+Subtraction: 0.9742365572268881
+==========
+Positive probability: -53.174083342904645
+Negative probability: -54.08567337736007
+Subtraction: 0.911590034455422
+==========
+Positive probability: -15.772972814901655
+Negative probability: -16.50366782043881
+Subtraction: 0.7306950055371555
+==========
+Positive probability: -12.648989998813844
+Negative probability: -12.166695442038344
+Subtraction: 0.4822945567754999
+==========
+Positive probability: -27.99780637021822
+Negative probability: -30.117900980839075
+Subtraction: 2.1200946106208534
+==========
+Positive probability: -20.8334650227333
+Negative probability: -15.479199053021269
+Subtraction: 5.354265969712031
+==========
+Positive probability: -24.36043067246067
+Negative probability: -19.612971772309646
+Subtraction: 4.747458900151024
+==========
+Positive probability: -30.829334613895274
+Negative probability: -31.71375650705
+Subtraction: 0.8844218931547267
+==========
+Positive probability: -33.753527029836185
+Negative probability: -34.66927749687869
+Subtraction: 0.915750467042507
+==========
+Positive probability: -12.959361216288958
+Negative probability: -12.829764713558658
+Subtraction: 0.12959650273029943
+==========
+Positive probability: -38.63739464239272
+Negative probability: -38.95173805494274
+Subtraction: 0.3143434125500164
+==========
+Positive probability: -31.656824479279475
+Negative probability: -38.48322938645591
+Subtraction: 6.826404907176435
+==========
+Positive probability: -29.566061566614668
+Negative probability: -30.016023818955478
+Subtraction: 0.44996225234081066
+==========
+Positive probability: -56.607673432829486
+Negative probability: -56.984738834457694
+Subtraction: 0.377065401628208
+==========
+Positive probability: -41.813010519429504
+Negative probability: -43.002667550217666
+Subtraction: 1.1896570307881618
+==========
+Positive probability: -5.142420493494701
+Negative probability: -5.3216830976533265
+Subtraction: 0.17926260415862583
+==========
+Positive probability: -44.416290891364724
+Negative probability: -45.21316979044059
+Subtraction: 0.796878899075864
+==========
+Positive probability: -55.60203285182489
+Negative probability: -50.79581178544346
+Subtraction: 4.8062210663814255
+==========
+Positive probability: -40.955873639627654
+Negative probability: -40.874768527532986
+Subtraction: 0.08110511209466864
+==========
+Positive probability: -11.082954344885003
+Negative probability: -11.058443568058498
+Subtraction: 0.02451077682650471
+==========
+Positive probability: -45.04353076788366
+Negative probability: -45.594438966148886
+Subtraction: 0.5509081982652262
+==========
+Positive probability: -23.284394740271992
+Negative probability: -23.395357164197787
+Subtraction: 0.1109624239257947
+==========
+Positive probability: -48.54913768721194
+Negative probability: -49.19350381697895
+Subtraction: 0.6443661297670076
+==========
+Positive probability: -22.776674695898492
+Negative probability: -22.051394614490068
+Subtraction: 0.7252800814084246
+==========
+Positive probability: -38.231277983684414
+Negative probability: -38.337378055022754
+Subtraction: 0.10610007133833932
+==========
+Positive probability: -33.73206848274078
+Negative probability: -34.213000484118865
+Subtraction: 0.4809320013780862
+==========
+Positive probability: -27.09612828357974
+Negative probability: -27.03852945015505
+Subtraction: 0.05759883342469152
+==========
+Positive probability: -19.788758893443827
+Negative probability: -20.149832462724323
+Subtraction: 0.36107356928049583
+==========
+Positive probability: -13.42346070045067
+Negative probability: -14.395535228243485
+Subtraction: 0.9720745277928149
+==========
+Positive probability: -37.082705163120124
+Negative probability: -38.38930074321691
+Subtraction: 1.3065955800967828
+==========
+Positive probability: -10.818019688909551
+Negative probability: -11.096018537192291
+Subtraction: 0.27799884828274024
+==========
+Positive probability: -19.882661632719813
+Negative probability: -20.19335263015671
+Subtraction: 0.31069099743689677
+==========
+Positive probability: -7.705946214032959
+Negative probability: -12.871641249915228
+Subtraction: 5.165695035882269
+==========
+Positive probability: -31.484547901610824
+Negative probability: -33.124767038647505
+Subtraction: 1.6402191370366808
+==========
+Positive probability: -18.08870859188156
+Negative probability: -23.674329675597622
+Subtraction: 5.585621083716063
+==========
+Positive probability: -21.34277708655822
+Negative probability: -21.229256673366024
+Subtraction: 0.11352041319219452
+==========
+Positive probability: -12.798546990248147
+Negative probability: -13.223011710030582
+Subtraction: 0.42446471978243494
+==========
+Positive probability: -24.623259650689715
+Negative probability: -24.699772503705468
+Subtraction: 0.07651285301575328
+==========
+Positive probability: -38.030742141032626
+Negative probability: -39.08379978970833
+Subtraction: 1.0530576486757042
+==========
+Positive probability: -21.722054896077335
+Negative probability: -22.106001248459147
+Subtraction: 0.3839463523818125
+==========
+Positive probability: -22.09485255981086
+Negative probability: -27.736832344446015
+Subtraction: 5.641979784635154
+==========
+Positive probability: -17.510515144513498
+Negative probability: -17.505375794020946
+Subtraction: 0.005139350492552097
+==========
+Positive probability: -12.590117659733824
+Negative probability: -18.700844818912444
+Subtraction: 6.110727159178619
+==========
+Positive probability: -18.53731557597505
+Negative probability: -18.157862869789373
+Subtraction: 0.3794527061856776
+==========
+Positive probability: -6.453539236962799
+Negative probability: -6.444498238958072
+Subtraction: 0.009040998004726575
+==========
+Positive probability: -4.238201001361787
+Negative probability: -4.311868115359728
+Subtraction: 0.07366711399794035
+==========
+Positive probability: -13.846366582921066
+Negative probability: -13.950716721961586
+Subtraction: 0.10435013904051971
+==========
+Positive probability: -4.636141010033825
+Negative probability: -4.85291391729843
+Subtraction: 0.2167729072646054
+==========
+Positive probability: -25.29294664138726
+Negative probability: -24.53008822639246
+Subtraction: 0.762858414994799
+==========
+Positive probability: -24.46977332088356
+Negative probability: -29.577958164961025
+Subtraction: 5.1081848440774635
+==========
+Positive probability: -7.443548065563756
+Negative probability: -7.538747550202029
+Subtraction: 0.09519948463827266
+==========
+Positive probability: -4.501442436136369
+Negative probability: -4.45245137792235
+Subtraction: 0.0489910582140185
+==========
+Positive probability: -24.27038107420057
+Negative probability: -23.1816438701796
+Subtraction: 1.0887372040209726
+==========
+Positive probability: -41.645286637085505
+Negative probability: -35.80829711519962
+Subtraction: 5.836989521885883
+==========
+Positive probability: -28.70486247305745
+Negative probability: -28.596561816001763
+Subtraction: 0.10830065705568614
+==========
+Positive probability: -44.98901453875288
+Negative probability: -50.18066114067131
+Subtraction: 5.191646601918428
+==========
+Positive probability: -27.14067386978794
+Negative probability: -27.807971307363182
+Subtraction: 0.6672974375752432
+==========
+Positive probability: -15.787983208003663
+Negative probability: -14.582363432120516
+Subtraction: 1.2056197758831466
+==========
+Positive probability: -30.962549000903017
+Negative probability: -33.29730019410882
+Subtraction: 2.334751193205804
+==========
+Positive probability: -25.280836405610998
+Negative probability: -26.405619181291982
+Subtraction: 1.124782775680984
+==========
+Positive probability: -9.316503995244739
+Negative probability: -9.150885185177776
+Subtraction: 0.1656188100669631
+==========
+Positive probability: -21.82062859874776
+Negative probability: -21.656376532072557
+Subtraction: 0.16425206667520342
+==========
+Positive probability: -49.182743223883065
+Negative probability: -54.912682733991026
+Subtraction: 5.729939510107961
+==========
+Positive probability: -41.71513124578914
+Negative probability: -36.534883557984664
+Subtraction: 5.180247687804474
+==========
+Positive probability: -30.148967763067866
+Negative probability: -24.932866666660267
+Subtraction: 5.2161010964075984
+==========
+Positive probability: -40.75927556833524
+Negative probability: -41.24718093054449
+Subtraction: 0.4879053622092471
+==========
+Positive probability: -9.7389473911321
+Negative probability: -9.759782792517683
+Subtraction: 0.020835401385582486
+==========
+Positive probability: -11.65524440329308
+Negative probability: -11.974771311557124
+Subtraction: 0.3195269082640433
+==========
+Positive probability: -66.85380913875892
+Negative probability: -66.95726386571113
+Subtraction: 0.10345472695220792
+==========
+Positive probability: -23.28367505009416
+Negative probability: -23.456255596705663
+Subtraction: 0.17258054661150268
+==========
+Positive probability: -19.50104341796721
+Negative probability: -19.55422169424226
+Subtraction: 0.05317827627504812
+==========
+Positive probability: -32.408708076359176
+Negative probability: -32.46247438001789
+Subtraction: 0.053766303658711934
+==========
+Positive probability: -12.19890402379222
+Negative probability: -12.579616252728695
+Subtraction: 0.38071222893647416
+==========
+Positive probability: -16.560582334453994
+Negative probability: -17.257594129773484
+Subtraction: 0.6970117953194901
+==========
+Positive probability: -4.686941163713881
+Negative probability: -4.732212233633384
+Subtraction: 0.04527106991950358
+==========
+Positive probability: -12.798546990248147
+Negative probability: -13.223011710030582
+Subtraction: 0.42446471978243494
+==========
+Positive probability: -20.187164373133456
+Negative probability: -19.810641750561043
+Subtraction: 0.37652262257241276
+==========
+Positive probability: -30.35298039674077
+Negative probability: -31.21208417828127
+Subtraction: 0.8591037815405009
+==========
+Positive probability: -37.1011949095253
+Negative probability: -35.995723907639956
+Subtraction: 1.1054710018853413
+==========
+Positive probability: -30.041591472208474
+Negative probability: -36.19999551651767
+Subtraction: 6.158404044309194
+==========
+Positive probability: -11.231076776618263
+Negative probability: -11.100392938616437
+Subtraction: 0.1306838380018256
+==========
+Positive probability: -8.591074356537845
+Negative probability: -8.838239998119214
+Subtraction: 0.24716564158136833
+==========
+Positive probability: -19.55123605291745
+Negative probability: -20.26411374991795
+Subtraction: 0.7128776970005006
+==========
+Positive probability: -30.922822730504237
+Negative probability: -26.06361674067296
+Subtraction: 4.859205989831278
+==========
+Positive probability: -13.420249793117176
+Negative probability: -12.768369377971927
+Subtraction: 0.6518804151452482
+==========
+Positive probability: -8.08340711345693
+Negative probability: -8.632557597794447
+Subtraction: 0.5491504843375168
+==========
+Positive probability: -12.798546990248147
+Negative probability: -13.223011710030582
+Subtraction: 0.42446471978243494
+==========
+Positive probability: -30.5122560556434
+Negative probability: -35.49365276442317
+Subtraction: 4.981396708779766
+==========
+Positive probability: -28.39815098499198
+Negative probability: -22.58906921241543
+Subtraction: 5.809081772576548
+==========
+Positive probability: -35.98623669147977
+Negative probability: -34.8886542969025
+Subtraction: 1.097582394577266
+==========
+Positive probability: -19.40851635436283
+Negative probability: -19.288850231393972
+Subtraction: 0.1196661229688587
+==========
+Positive probability: -30.894970629120365
+Negative probability: -25.0592124447294
+Subtraction: 5.835758184390965
+==========
+Positive probability: -46.692457005821986
+Negative probability: -47.92429130600408
+Subtraction: 1.2318343001820935
+==========
+Positive probability: -28.350507636531752
+Negative probability: -28.618732033140944
+Subtraction: 0.26822439660919173
+==========
+Positive probability: -18.484147983690704
+Negative probability: -19.05264391736685
+Subtraction: 0.5684959336761466
+==========
+Positive probability: -12.901447195166895
+Negative probability: -12.944137857583325
+Subtraction: 0.0426906624164296
+==========
+Positive probability: -27.89596412549033
+Negative probability: -28.785756984382623
+Subtraction: 0.8897928588922923
+==========
+Positive probability: -12.900889385857024
+Negative probability: -7.668644018461656
+Subtraction: 5.232245367395368
+==========
+Positive probability: -12.798546990248147
+Negative probability: -13.223011710030582
+Subtraction: 0.42446471978243494
+==========
+Positive probability: -26.428208925627846
+Negative probability: -26.629666672935404
+Subtraction: 0.2014577473075576
+==========
+Positive probability: -14.19032488761715
+Negative probability: -8.420278373574748
+Subtraction: 5.770046514042402
+==========
+Positive probability: -29.480213264581646
+Negative probability: -28.808746440680036
+Subtraction: 0.6714668239016106
+==========
+Positive probability: -11.295140943629212
+Negative probability: -11.439246212650728
+Subtraction: 0.14410526902151588
+==========
+Positive probability: -12.674948051629094
+Negative probability: -13.101931148794852
+Subtraction: 0.426983097165758
+==========
+Positive probability: -39.38364832542503
+Negative probability: -45.16470801668148
+Subtraction: 5.781059691256452
+==========
+Positive probability: -19.174763896193973
+Negative probability: -19.737570078685852
+Subtraction: 0.5628061824918795
+==========
+Positive probability: -23.52246905180807
+Negative probability: -24.331341051935485
+Subtraction: 0.8088720001274154
+==========
+Positive probability: -33.298884640926396
+Negative probability: -34.121097727205395
+Subtraction: 0.8222130862789996
+==========
+Positive probability: -42.21504545379915
+Negative probability: -43.258755860465946
+Subtraction: 1.043710406666797
+==========
+Positive probability: -19.527799181686976
+Negative probability: -19.11153777759424
+Subtraction: 0.4162614040927366
+==========
+Positive probability: -13.279132599550746
+Negative probability: -13.188911752698768
+Subtraction: 0.0902208468519774
+==========
+Positive probability: -11.602720419451227
+Negative probability: -11.531097279226378
+Subtraction: 0.07162314022484928
+==========
+Positive probability: -22.573479727342804
+Negative probability: -24.056316175019717
+Subtraction: 1.4828364476769131
+==========
+Positive probability: -16.777731545372752
+Negative probability: -17.389792847698164
+Subtraction: 0.6120613023254116
+==========
+Positive probability: -14.910531146983496
+Negative probability: -15.101235220503902
+Subtraction: 0.19070407352040597
+==========
+Positive probability: -18.1276852974613
+Negative probability: -17.095159120820174
+Subtraction: 1.0325261766411273
+==========
+Positive probability: -14.569952543529139
+Negative probability: -14.265829373100317
+Subtraction: 0.30412317042882187
+==========
+Positive probability: -30.06174522231724
+Negative probability: -24.883280537325675
+Subtraction: 5.178464684991564
+==========
+Positive probability: -81.57738732340735
+Negative probability: -82.83502526153954
+Subtraction: 1.2576379381321914
+==========
+Positive probability: -16.532249030286277
+Negative probability: -17.011089801012865
+Subtraction: 0.47884077072658826
+==========
+Positive probability: -9.501443665269957
+Negative probability: -9.65668584336203
+Subtraction: 0.15524217809207386
+==========
+Positive probability: -16.66481040708422
+Negative probability: -16.863805347873406
+Subtraction: 0.19899494078918423
+==========
+Positive probability: -25.154452973460486
+Negative probability: -26.124322441562455
+Subtraction: 0.9698694681019688
+==========
+Positive probability: -29.992312300761796
+Negative probability: -31.365007268405257
+Subtraction: 1.3726949676434614
+==========
+Positive probability: -48.530057615784195
+Negative probability: -47.82749682705029
+Subtraction: 0.7025607887339049
+==========
+Positive probability: -12.29272221068865
+Negative probability: -12.224828584004284
+Subtraction: 0.06789362668436638
+==========
+Positive probability: -22.497369676472633
+Negative probability: -22.299688884798307
+Subtraction: 0.19768079167432617
+==========
+Positive probability: -27.30936889686622
+Negative probability: -26.981528921043626
+Subtraction: 0.32783997582259516
+==========
+Positive probability: -8.317344200165401
+Negative probability: -8.387416679381726
+Subtraction: 0.07007247921632498
+==========
+Positive probability: -8.160652168548143
+Negative probability: -7.741296668822398
+Subtraction: 0.4193554997257456
+==========
+Positive probability: -21.767350165222105
+Negative probability: -22.760251672634777
+Subtraction: 0.9929015074126717
+==========
+Positive probability: -24.267588543851875
+Negative probability: -23.52312211492882
+Subtraction: 0.7444664289230545
+==========
+Positive probability: -21.292068996558232
+Negative probability: -20.65550141278294
+Subtraction: 0.6365675837752924
+==========
+Positive probability: -11.39788501368151
+Negative probability: -10.997643988904914
+Subtraction: 0.4002410247765962
+==========
+Positive probability: -23.48202123616141
+Negative probability: -18.3764511278804
+Subtraction: 5.105570108281007
+==========
+Positive probability: -5.70971837856345
+Negative probability: -5.786569895955977
+Subtraction: 0.0768515173925266
+==========
+Positive probability: -3.39731315708278
+Negative probability: -3.361416230201138
+Subtraction: 0.035896926881642255
+==========
+Positive probability: -20.450035303707317
+Negative probability: -20.762824450390276
+Subtraction: 0.31278914668295954
+==========
+Positive probability: -4.558843907860751
+Negative probability: -4.187232762963488
+Subtraction: 0.37161114489726366
+==========
+Positive probability: -37.50405904184273
+Negative probability: -32.542048423700535
+Subtraction: 4.962010618142195
+==========
+Positive probability: -8.048489199551309
+Negative probability: -7.821331617670928
+Subtraction: 0.22715758188038038
+==========
+Positive probability: -19.370744758378912
+Negative probability: -13.787933481171677
+Subtraction: 5.5828112772072345
+==========
+Positive probability: -29.255114857729982
+Negative probability: -28.357013165297943
+Subtraction: 0.8981016924320393
+==========
+Positive probability: -12.797320071340325
+Negative probability: -13.134167092986274
+Subtraction: 0.3368470216459496
+==========
+Positive probability: -19.799177535908726
+Negative probability: -25.65705298471342
+Subtraction: 5.857875448804695
+==========
+Positive probability: -28.987135736791622
+Negative probability: -33.899382603933326
+Subtraction: 4.912246867141704
+==========
+Positive probability: -16.941218971369224
+Negative probability: -17.63796744357898
+Subtraction: 0.6967484722097552
+==========
+Positive probability: -12.055136697748644
+Negative probability: -12.175688598719388
+Subtraction: 0.12055190097074409
+==========
+Positive probability: -13.84661463877271
+Negative probability: -13.815901951456384
+Subtraction: 0.030712687316325926
+==========
+Positive probability: -24.8454893819248
+Negative probability: -24.597405206690585
+Subtraction: 0.2480841752342151
+==========
+Positive probability: -15.461038346398105
+Negative probability: -15.935726219150478
+Subtraction: 0.4746878727523729
+==========
+Positive probability: -16.14313022561532
+Negative probability: -22.324300121405873
+Subtraction: 6.181169895790553
+==========
+Positive probability: -3.39731315708278
+Negative probability: -3.361416230201138
+Subtraction: 0.035896926881642255
+==========
+Positive probability: -5.210877874150552
+Negative probability: -5.543531847269683
+Subtraction: 0.3326539731191307
+==========
+Positive probability: -33.8353217218867
+Negative probability: -33.36663009017759
+Subtraction: 0.4686916317091132
+==========
+Positive probability: -31.749495232528098
+Negative probability: -36.09451074346315
+Subtraction: 4.345015510935049
+==========
+Positive probability: -37.10544852027019
+Negative probability: -37.85265859745288
+Subtraction: 0.747210077182693
+==========
+Positive probability: -12.113976058743958
+Negative probability: -12.651900668185155
+Subtraction: 0.5379246094411965
+==========
+Positive probability: -13.269137537163367
+Negative probability: -13.36085120978679
+Subtraction: 0.091713672623424
+==========
+Positive probability: -25.973684957984428
+Negative probability: -26.483618155451214
+Subtraction: 0.5099331974667862
+==========
+Positive probability: 0
+Negative probability: 0
+Subtraction: 0
+==========
+Positive probability: -31.429157177175703
+Negative probability: -31.33932152978874
+Subtraction: 0.08983564738696259
+==========
+Positive probability: -8.169078838447925
+Negative probability: -8.612523692481737
+Subtraction: 0.44344485403381206
+==========
+Positive probability: -11.678216525444547
+Negative probability: -11.674182040057083
+Subtraction: 0.004034485387464315
+==========
+Positive probability: -32.97146750406801
+Negative probability: -33.811077062276674
+Subtraction: 0.8396095582086645
+==========
+Positive probability: -22.30897709934549
+Negative probability: -22.724492436607548
+Subtraction: 0.41551533726205747
+==========
+Positive probability: -5.740905480842525
+Negative probability: -6.416923909235193
+Subtraction: 0.676018428392668
+==========
+Positive probability: -19.313839119949538
+Negative probability: -19.438032754481256
+Subtraction: 0.12419363453171783
+==========
+Positive probability: -12.334336847974644
+Negative probability: -12.897929529040187
+Subtraction: 0.5635926810655434
+==========
+Positive probability: -25.980129138107507
+Negative probability: -27.31075995626491
+Subtraction: 1.3306308181574025
+==========
+Positive probability: -26.43412742654682
+Negative probability: -20.8642082511521
+Subtraction: 5.56991917539472
+==========
+Positive probability: -52.389550082864076
+Negative probability: -53.54893858593657
+Subtraction: 1.159388503072492
+==========
+Positive probability: -12.798546990248147
+Negative probability: -13.223011710030582
+Subtraction: 0.42446471978243494
+==========
+Positive probability: -31.646049186268527
+Negative probability: -31.899724074468626
+Subtraction: 0.25367488820009854
+==========
+Positive probability: -23.726476304617385
+Negative probability: -24.912762411038784
+Subtraction: 1.1862861064213988
+==========
+Positive probability: -37.76301782841903
+Negative probability: -37.50366688587756
+Subtraction: 0.25935094254147373
+==========
+Positive probability: -9.0826100655194
+Negative probability: -8.553345806124941
+Subtraction: 0.5292642593944592
+==========
+Positive probability: -24.305396833910976
+Negative probability: -24.849407913352866
+Subtraction: 0.5440110794418906
+==========
+Positive probability: -11.792065301417091
+Negative probability: -11.662314999850448
+Subtraction: 0.12975030156664324
+==========
+Positive probability: -47.23406221503448
+Negative probability: -48.20502184743536
+Subtraction: 0.9709596324008842
+==========
+Positive probability: -43.92382816653505
+Negative probability: -43.32209802092402
+Subtraction: 0.601730145611036
+==========
+Positive probability: -20.706368632334403
+Negative probability: -21.011021042814868
+Subtraction: 0.30465241048046465
+==========
+Positive probability: -8.558217056271495
+Negative probability: -8.494773612381772
+Subtraction: 0.06344344388972267
+==========
+Positive probability: -13.164427001836376
+Negative probability: -13.803872392646635
+Subtraction: 0.6394453908102591
+==========
+Positive probability: -21.543878666892258
+Negative probability: -10.380922261662938
+Subtraction: 11.16295640522932
+==========
+Positive probability: -18.297703907353114
+Negative probability: -19.22735292014898
+Subtraction: 0.929649012795867
+==========
+Positive probability: -19.418181629748474
+Negative probability: -19.056665108651828
+Subtraction: 0.36151652109664667
+==========
