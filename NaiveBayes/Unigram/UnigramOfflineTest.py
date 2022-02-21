@@ -129,6 +129,7 @@ negative_result_file = open("negative_result.txt", "wt")
 comments_counter = 0
 true_categorization = 0
 lower_than_zero_counter = 0
+number_of_unique_words = unique_words_counter(positive_comments_dictionary, negative_comments_dictionary)
 while True:
     comment = negative_test_comments_file.readline().lower()
     if comment == "":
@@ -149,7 +150,7 @@ while True:
         else:
             negative_numerator = 1
 
-        final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
+        final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
 
     negative_result_file.write(str(round(final_result, 2)) + "\n")
     if final_result <= -0.1:
@@ -189,7 +190,7 @@ while True:
         else:
             negative_numerator = 1
 
-        final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
+        final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
 
 
     positive_result_file.write(str(round(final_result, 2)) + "\n")
@@ -229,7 +230,7 @@ while True:
         else:
             negative_numerator = 1
 
-        final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
+        final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
 
     neutral_result_file.write(str(round(final_result, 2)) + "\n")
     if -0.1 < final_result < 0.1:

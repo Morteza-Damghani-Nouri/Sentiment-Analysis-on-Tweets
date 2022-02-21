@@ -35,11 +35,11 @@ def sorted_dictionary_printer(input_list, output_address, category):
     output_dictionary_file = open(output_address, "wt")
     if category == "positive":
         for word in input_list:
-            if word[1] > 10 and len(word[0]) < 30:
+            if word[1] > 0 and len(word[0]) < 30:
                 output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
     else:
         for word in input_list:
-            if word[1] > 10 and 30 > len(word[0]):
+            if word[1] > 0 and 30 > len(word[0]):
                 output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
     output_dictionary_file.close()
 
