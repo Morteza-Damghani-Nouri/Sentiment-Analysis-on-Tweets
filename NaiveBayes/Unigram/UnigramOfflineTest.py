@@ -104,6 +104,19 @@ def dictionary_loader():
     return positive_dictionary, negative_dictionary, total_number_of_positive_words, total_number_of_negative_words
 
 
+# This function counts unique words in both positive and negative dictionaries
+def unique_words_counter(input_positive_dictionary, input_negative_dictionary):
+    sorted_positive_list = sorted(input_positive_dictionary.items(), key=lambda x: x[1], reverse=True)
+    sorted_negative_list = sorted(input_negative_dictionary.items(), key=lambda x: x[1], reverse=True)
+    counter = 0
+    for word in sorted_positive_list:
+        if word[1] == 1:
+            counter += 1
+    for word in sorted_negative_list:
+        if word[1] == 1:
+            counter += 1
+    return counter
+
 
 # Main part of the code starts here
 positive_comments_dictionary, negative_comments_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words = dictionary_loader()
@@ -217,8 +230,6 @@ while True:
             negative_numerator = 1
 
         final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
-
-
 
     neutral_result_file.write(str(round(final_result, 2)) + "\n")
     if -0.1 < final_result < 0.1:
