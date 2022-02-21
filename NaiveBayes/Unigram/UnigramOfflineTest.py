@@ -1,5 +1,6 @@
 import math
 
+
 # This function removes redundant characters of an input comment
 def comment_smoother(input_comment):
     input_comment = input_comment.replace(".", "")
@@ -18,6 +19,13 @@ def comment_smoother(input_comment):
     return input_comment
 
 
+# This function receives a list which is sorted by sorted function and produces the output dictionary file
+def sorted_dictionary_printer(input_list, output_address, category):
+    output_dictionary_file = open(output_address, "wt")
+    for word in input_list:
+        output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
+    output_dictionary_file.close()
+
 
 # This function loads the negative and positive dictionaries
 def dictionary_loader():
@@ -27,7 +35,7 @@ def dictionary_loader():
     # neutral_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_neutral_dictionary.txt"
     positive_dictionary_file = open(positive_dictionary_address, "rt")
     negative_dictionary_file = open(negative_dictionary_address, "rt")
-    # neutral_dictionary_file = open(neutral_dictionary_address, "rt")
+    # neutral_dictionary_file = open(neutral_dictionary_address, "rt", encoding="utf8")
     positive_dictionary = {}
     negative_dictionary = {}
     neutral_dictionary = {}
@@ -59,6 +67,7 @@ def dictionary_loader():
         count = int(count)
         positive_dictionary[word] = count
         total_number_of_positive_words += count
+
 
     # Loading negative dictionary
     while True:
@@ -127,6 +136,7 @@ positive_comments_dictionary, negative_comments_dictionary, total_number_of_posi
 # Unigram Naive Bayes method implementation
 # Negative comments test implementation
 print("Processing test files...")
+# t = total_number_of_positive_dictionary_words + total_number_of_negative_dictionary_words + total_number_of_neutral_dictionary_words
 negative_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//negative_test_tweets.txt"
 negative_test_comments_file = open(negative_test_comments_file_address, "rt")
 negative_result_file = open("negative_result.txt", "wt")
@@ -140,28 +150,28 @@ while True:
 
     comment = comment_smoother(comment)
     words_list = comment.split(" ")
-    negative_result = 0
-    positive_result = 0
+    # negative_result = 0
+    # positive_result = 0
+    final_result = 0
     for word in words_list:
-        if word in negative_comments_dictionary:
-            negative_result = negative_result + math.log10(negative_comments_dictionary[word] / total_number_of_negative_dictionary_words)
         if word in positive_comments_dictionary:
-            positive_result = positive_result + math.log10(positive_comments_dictionary[word] / total_number_of_positive_dictionary_words)
-        # if word in neutral_comments_dictionary:
-        #     neutral_result = neutral_result + math.log10(neutral_comments_dictionary[word] / total_number_of_neutral_dictionary_words)
-    maximum_result = max(positive_result, negative_result)
-    if maximum_result == positive_result or maximum_result == negative_result:
-        if maximum_result == positive_result:
-            negative_result_file.write("Positive\n")
-        if maximum_result == negative_result:
-            negative_result_file.write("Negative\n")
-            true_categorization += 1
-        # if maximum_result == neutral_result:
-        #     negative_result_file.write("Neutral\n")
+            positive_numerator = positive_comments_dictionary[word] + 1
+        else:
+            positive_numerator = 1
 
-    else:
-        print("ERROR, maximum result is not equal to any of positive_result, negative_result (negative test tweets)")
+        if word in negative_comments_dictionary:
+            negative_numerator = negative_comments_dictionary[word] + 1
+        else:
+            negative_numerator = 1
 
+        final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
+
+
+
+
+
+
+    negative_result_file.write(str(round(final_result, 2)) + "\n")
     comments_counter += 1
 
 negative_comments_precision = round((true_categorization / comments_counter) * 100, 2)
@@ -182,30 +192,25 @@ while True:
         break
     comment = comment_smoother(comment)
     words_list = comment.split(" ")
-    negative_result = 0
-    positive_result = 0
+    # negative_result = 0
+    # positive_result = 0
+    # neutral_result = 0
+    final_result = 0
     for word in words_list:
-        if word in negative_comments_dictionary:
-            negative_result = negative_result + math.log10(negative_comments_dictionary[word] / total_number_of_negative_dictionary_words)
         if word in positive_comments_dictionary:
-            positive_result = positive_result + math.log10(positive_comments_dictionary[word] / total_number_of_positive_dictionary_words)
-        #if word in neutral_comments_dictionary:
-        #    neutral_result = neutral_result + math.log10(neutral_comments_dictionary[word] / total_number_of_neutral_dictionary_words)
+            positive_numerator = positive_comments_dictionary[word] + 1
+        else:
+            positive_numerator = 1
+
+        if word in negative_comments_dictionary:
+            negative_numerator = negative_comments_dictionary[word] + 1
+        else:
+            negative_numerator = 1
+
+        final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
 
 
-    maximum_result = max(positive_result, negative_result)
-    if maximum_result == positive_result or maximum_result == negative_result:
-        if maximum_result == positive_result:
-            positive_result_file.write("Positive\n")
-            true_categorization += 1
-        if maximum_result == negative_result:
-            positive_result_file.write("Negative\n")
-        # if maximum_result == neutral_result:
-        #     positive_result_file.write("Neutral\n")
-
-    else:
-        print("ERROR, maximum result is not equal to any of positive_result, negative_result and neutral_result (positive test tweets)")
-
+    positive_result_file.write(str(round(final_result, 2)) + "\n")
     comments_counter += 1
 
 positive_comments_precision = round((true_categorization / comments_counter) * 100, 2)
@@ -225,31 +230,26 @@ while True:
         break
     comment = comment_smoother(comment)
     words_list = comment.split(" ")
-    negative_result = 0
-    positive_result = 0
+    # negative_result = 0
+    # positive_result = 0
+    # neutral_result = 0
+    final_result = 0
     for word in words_list:
-        if word in negative_comments_dictionary:
-            negative_result = negative_result + math.log10(negative_comments_dictionary[word] / total_number_of_negative_dictionary_words)
         if word in positive_comments_dictionary:
-            positive_result = positive_result + math.log10(positive_comments_dictionary[word] / total_number_of_positive_dictionary_words)
-        # if word in neutral_comments_dictionary:
-        #     neutral_result = neutral_result + math.log10(neutral_comments_dictionary[word] / total_number_of_neutral_dictionary_words)
+            positive_numerator = positive_comments_dictionary[word] + 1
+        else:
+            positive_numerator = 1
+
+        if word in negative_comments_dictionary:
+            negative_numerator = negative_comments_dictionary[word] + 1
+        else:
+            negative_numerator = 1
+
+        final_result += math.log10((positive_numerator / total_number_of_positive_dictionary_words) / (negative_numerator / total_number_of_negative_dictionary_words))
 
 
-    maximum_result = max(positive_result, negative_result)
-    if maximum_result == positive_result or maximum_result == negative_result:
-        neutral_result_file.write("Positive probability: " + str(positive_result) + "\n" + "Negative probability: " + str(negative_result) + "\n" + "Subtraction: " + str(abs(positive_result - negative_result)) + "\n==========\n")
-        # if maximum_result == positive_result:
-        #     neutral_result_file.write("Positive\n")
-        # if maximum_result == negative_result:
-        #     neutral_result_file.write("Negative\n")
-        # if maximum_result == neutral_result:
-        #     neutral_result_file.write("Neutral\n")
-        #     true_categorization += 1
 
-    else:
-        print("ERROR, maximum result is not equal to any of positive_result, negative_result and neutral_result (neutral test tweets)")
-
+    neutral_result_file.write(str(round(final_result, 2)) + "\n")
     comments_counter += 1
 
 neutral_comments_precision = round((true_categorization / comments_counter) * 100, 2)
@@ -266,27 +266,6 @@ print("Negative test tweets precision: " + str(negative_comments_precision) + " 
 print("==============================================================================")
 print("Total number of neutral test tweets: " + str(total_neutral_comments))
 print("Neutral test tweets precision: " + str(neutral_comments_precision) + " %")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

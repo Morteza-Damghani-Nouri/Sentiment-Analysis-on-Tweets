@@ -33,9 +33,10 @@ def smoother_function(input_word):
 # This function receives a list which is sorted by sorted function and produces the output dictionary file
 def sorted_dictionary_printer(input_list, output_address, category):
     output_dictionary_file = open(output_address, "wt")
-    if category == "neutral":
+    if category == "positive":
         for word in input_list:
-            output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
+            if word[1] > 10 and len(word[0]) < 30:
+                output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
     else:
         for word in input_list:
             if word[1] > 10 and 30 > len(word[0]):
@@ -45,7 +46,7 @@ def sorted_dictionary_printer(input_list, output_address, category):
 
 # This function generates the needed dictionary
 def dictionary_generator(input_dictionary, input_address, output_address, category):
-    input_file = open(input_address, "rt")
+    input_file = open(input_address, "rt", encoding="cp850")
     line_counter = 0
     while True:
         comment = input_file.readline()
@@ -77,21 +78,13 @@ def dictionary_generator(input_dictionary, input_address, output_address, catego
     sorted_dictionary_printer(sorted_list, output_address, category)
 
 
-
-
-
-
-
-
-
-
 # Main part of the code starts here
 positive_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Train//positive_train_tweets.txt"
-negative_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Train//negative_train_tweets.txt"
-# neutral_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Train//neutral_train_tweets.txt"
+negative_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Train//negative_train_tweets (short version3).txt"
+
 positive_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_positive_dictionary.txt"
 negative_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_negative_dictionary.txt"
-# neutral_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_neutral_dictionary.txt"
+
 positive_words_dictionary = {}
 negative_words_dictionary = {}
 neutral_words_dictionary = {}
