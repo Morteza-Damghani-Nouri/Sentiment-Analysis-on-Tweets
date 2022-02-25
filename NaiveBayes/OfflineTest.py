@@ -19,14 +19,6 @@ def comment_smoother(input_comment):
     return input_comment
 
 
-# This function receives a list which is sorted by sorted function and produces the output dictionary file
-def sorted_dictionary_printer(input_list, output_address, category):
-    output_dictionary_file = open(output_address, "wt")
-    for word in input_list:
-        output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
-    output_dictionary_file.close()
-
-
 # This function loads the negative and positive dictionaries
 def dictionary_loader():
     print("Loading dictionaries...")
