@@ -120,7 +120,6 @@ negative_test_comments_file = open(negative_test_comments_file_address, "rt")
 negative_result_file = open("negative_result.txt", "wt")
 comments_counter = 0
 true_categorization = 0
-lower_than_zero_counter = 0
 number_of_unique_words = unique_words_counter(positive_comments_dictionary, negative_comments_dictionary)
 while True:
     comment = negative_test_comments_file.readline().lower()
@@ -145,10 +144,8 @@ while True:
         final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
 
     negative_result_file.write(str(round(final_result, 2)) + "\n")
-    if final_result <= -0.1:
-        true_categorization += 1
     if final_result < 0:
-        lower_than_zero_counter += 1
+        true_categorization += 1
     comments_counter += 1
 
 negative_comments_precision = round((true_categorization / comments_counter) * 100, 2)
@@ -163,7 +160,6 @@ positive_test_comments_file = open(positive_test_comments_file_address, "rt")
 positive_result_file = open("positive_result.txt", "wt")
 comments_counter = 0
 true_categorization = 0
-more_than_zero_counter = 0
 while True:
     comment = positive_test_comments_file.readline()
     if comment == "":
@@ -187,10 +183,8 @@ while True:
 
     positive_result_file.write(str(round(final_result, 2)) + "\n")
 
-    if final_result >= 0.1:
-        true_categorization += 1
     if final_result > 0:
-        more_than_zero_counter += 1
+        true_categorization += 1
     comments_counter += 1
 
 positive_comments_precision = round((true_categorization / comments_counter) * 100, 2)
@@ -198,53 +192,15 @@ total_positive_comments = comments_counter
 positive_test_comments_file.close()
 positive_result_file.close()
 
-# Neutral comments test implementation
-neutral_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//neutral_test_tweets.txt"
-neutral_test_comments_file = open(neutral_test_comments_file_address, "rt")
-neutral_result_file = open("neutral_result.txt", "wt")
-comments_counter = 0
-true_categorization = 0
-while True:
-    comment = neutral_test_comments_file.readline()
-    if comment == "":
-        break
-    comment = comment_smoother(comment)
-    words_list = comment.split(" ")
-    final_result = 0
-    for word in words_list:
-        if word in positive_comments_dictionary:
-            positive_numerator = positive_comments_dictionary[word] + 1
-        else:
-            positive_numerator = 1
 
-        if word in negative_comments_dictionary:
-            negative_numerator = negative_comments_dictionary[word] + 1
-        else:
-            negative_numerator = 1
-
-        final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
-
-    neutral_result_file.write(str(round(final_result, 2)) + "\n")
-    if -0.1 < final_result < 0.1:
-        true_categorization += 1
-    comments_counter += 1
-
-neutral_comments_precision = round((true_categorization / comments_counter) * 100, 2)
-total_neutral_comments = comments_counter
-neutral_test_comments_file.close()
-neutral_result_file.close()
 
 
 print("Total number of positive test tweets: " + str(total_positive_comments))
 print("Positive test tweets precision: " + str(positive_comments_precision) + " %")
-print("More than zero: " + str(more_than_zero_counter) + "    " + str(round(more_than_zero_counter / total_positive_comments, 2)))
 print("==============================================================================")
 print("Total number of negative test tweets: " + str(total_negative_comments))
 print("Negative test tweets precision: " + str(negative_comments_precision) + " %")
-print("Lower than zero: " + str(lower_than_zero_counter) + "    " + str(round(lower_than_zero_counter / total_negative_comments, 2)))
-print("==============================================================================")
-print("Total number of neutral test tweets: " + str(total_neutral_comments))
-print("Neutral test tweets precision: " + str(neutral_comments_precision) + " %")
+
 
 
 
