@@ -217,19 +217,14 @@ while True:
 # Generating the test list for positive test tweets
 positive_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//positive_test_tweets.txt"
 test_list = nltk_input_list_generator(positive_test_tweets_address, 1, [])
-print("The length of test list for positive test tweets is: " + str(len(test_list)))
 
 # Evaluating the model for positive tweets by Maximum Entropy model
-print("Evaluating the model for positive test tweets...")
 total_positive_test_tweets = len(test_list)
 for tweet_tuple in test_list:
     tweet_word_dictionary = tweet_tuple[0]
     main_label = tweet_tuple[1]
     predicted_label = classifier.classify(tweet_word_dictionary)
     me_results.append(predicted_label)
-
-print("The length of nb_results (positive): " + str(len(nb_results)))
-print("The length of me_results (positive): " + str(len(me_results)))
 final_positive_results = []
 i = 0
 while i < len(me_results):
@@ -241,10 +236,6 @@ while i < len(me_results):
     if (me_results[i] == 1 and nb_results[i] == -1) or (me_results[i] == -1 and nb_results[i] == 1):
         final_positive_results.append(0)
     i += 1
-print("nb_results: " + str(nb_results))
-print("me_results: " + str(me_results))
-print("final_positive_results: " + str(final_positive_results))
-print("number of positive tweets: " + str(comments_counter))
 positive_precision = round((true_categorization / comments_counter) * 100, 2)
 
 # Evaluating the negative test tweets
@@ -289,18 +280,13 @@ while True:
 # Generating the test list for negative test tweets
 negative_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//negative_test_tweets.txt"
 test_list = nltk_input_list_generator(negative_test_tweets_address, -1, [])
-print("The length of test list for negative test tweets is: " + str(len(test_list)))
 
 # Evaluating the model for negative tweets by Maximum Entropy model
-print("Evaluating the model for negative test tweets...")
 for tweet_tuple in test_list:
     tweet_word_dictionary = tweet_tuple[0]
     main_label = tweet_tuple[1]
     predicted_label = classifier.classify(tweet_word_dictionary)
     me_results.append(predicted_label)
-
-print("The length of nb_results (negative): " + str(len(nb_results)))
-print("The length of me_results (negative): " + str(len(me_results)))
 i = 0
 while i < len(me_results):
     if me_results[i] == 1 and nb_results[i] == 1:
@@ -311,10 +297,6 @@ while i < len(me_results):
     if (me_results[i] == 1 and nb_results[i] == -1) or (me_results[i] == -1 and nb_results[i] == 1):
         final_negative_results.append(0)
     i += 1
-print("nb_results: " + str(nb_results))
-print("me_results: " + str(me_results))
-print("final_negative_results: " + str(final_negative_results))
-print("number of negative tweets: " + str(comments_counter))
 negative_precision = round((true_categorization / comments_counter) * 100, 2)
 print("The model precision for positive tweets: " + str(positive_precision) + " %")
 print("The model precision for negative tweets: " + str(negative_precision) + " %")
