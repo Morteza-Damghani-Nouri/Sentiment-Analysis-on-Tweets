@@ -88,16 +88,12 @@ def dictionary_loader():
     print("Loading dictionaries...")
     positive_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_positive_dictionary.txt"
     negative_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_negative_dictionary.txt"
-    # neutral_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_neutral_dictionary.txt"
     positive_dictionary_file = open(positive_dictionary_address, "rt")
     negative_dictionary_file = open(negative_dictionary_address, "rt")
-    # neutral_dictionary_file = open(neutral_dictionary_address, "rt", encoding="utf8")
     positive_dictionary = {}
     negative_dictionary = {}
-    neutral_dictionary = {}
     total_number_of_negative_words = 0
     total_number_of_positive_words = 0
-    # total_number_of_neutral_words = 0
 
     # Loading positive dictionary
     while True:
