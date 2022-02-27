@@ -83,6 +83,7 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
     input_file.close()
     return main_list
 
+
 # This function loads the negative and positive dictionaries
 def dictionary_loader():
     print("Loading dictionaries...")
