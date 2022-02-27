@@ -1,5 +1,15 @@
+import nltk
+import pickle   # This library is used to save the model on disk
 
 ENGLISH_CHARS = ["a", "b", "c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  "A",  "B",  "C",  "D",  "E",  "F",  "G",  "H",  "I",  "J",  "K",  "L",  "M",  "N",  "O",  "P",  "Q",  "R",  "S",  "T",  "U",  "V",  "W",  "X",  "Y",  "Z", "'", "\""]
+# This function converts the input list to dictionary format which is accepted in NLTK library
+def list_to_dict_converter(input_word_list):
+    output_dict = {}
+    for word in input_word_list:
+        output_dict[word] = True
+    return output_dict
+
+
 # This function removes the redundant last characters of words like ?? in that?? and removes numbers and the name of seasons
 def smoother_function(input_word):
     if input_word.find("0") != -1 or input_word.find("1") != -1 or input_word.find("2") != -1 or input_word.find("3") != -1 or input_word.find("4") != -1 or input_word.find("5") != -1 or input_word.find("6") != -1 or input_word.find("7") != -1 or input_word.find("8") != -1 or input_word.find("9") != -1:
@@ -30,30 +40,17 @@ def smoother_function(input_word):
         return "."
 
 
-# This function receives a list which is sorted by sorted function and produces the output dictionary file
-def sorted_dictionary_printer(input_list, output_address, category):
-    output_dictionary_file = open(output_address, "wt")
-    if category == "positive":
-        for word in input_list:
-            if word[1] > 0 and len(word[0]) < 30:
-                output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
-    else:
-        for word in input_list:
-            if word[1] > 0 and 30 > len(word[0]):
-                output_dictionary_file.write(word[0] + " " * (30 - len(word[0])) + str(word[1]) + "\n")
-    output_dictionary_file.close()
-
-
 # This function generates the needed dictionary
-def dictionary_generator(input_dictionary, input_address, output_address, category):
-    input_file = open(input_address, "rt", encoding="cp850")
+def nltk_input_list_generator(input_address, data_tag, main_list):
+    input_file = open(input_address, "rt", encoding="utf8")
     line_counter = 0
     while True:
-        comment = input_file.readline()
+        comment = input_file.readline().lower()
         if comment == "":
             break
 
         words_list = comment.split(" ")
+        temp_list = []
         for word in words_list:
             if word != "." and word != "," and word != "  " and word != ";" and word != "\"" and word != "\'" and word != "*" and word != "(" and word != ")" and word != "--" and word != "-" and word != "?" and word != "!" and word != "&" and word != ":" and word != "_"\
                     and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it"\
@@ -62,38 +59,102 @@ def dictionary_generator(input_dictionary, input_address, output_address, catego
                 new_word = smoother_function(word)
                 # print(word)
                 if new_word != ".":
-                    if new_word in input_dictionary:
-                        input_dictionary[new_word] += 1
-                    else:
-                        input_dictionary[new_word] = 1
-
+                    temp_list.append(new_word)
+        main_list.append((list_to_dict_converter(temp_list), data_tag))
         line_counter += 1
         print(str(line_counter))
     input_file.close()
-
-    # Sorting the dictionary (sorted function returns a list)
-    print("Sorting...")
-    sorted_list = sorted(input_dictionary.items(), key=lambda x: x[1], reverse=True)
-    print("Printing output dictionary to the file...")
-    sorted_dictionary_printer(sorted_list, output_address, category)
+    return main_list
 
 
 # Main part of the code starts here
-positive_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Train//positive_train_tweets.txt"
-negative_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Train//negative_train_tweets (short version3).txt"
+# Generating the train list
+positive_train_tweets_address = "C://Users//user//Desktop//New Dataset 3//Train//positive_train.txt"
+negative_train_tweets_address = "C://Users//user//Desktop//New Dataset 3//Train//negative_train.txt"
+neutral_train_tweets_address = "C://Users//user//Desktop//New Dataset 3//Train//neutral_train (short version).txt"
+train_list = nltk_input_list_generator(positive_train_tweets_address, 1, [])
+train_list = nltk_input_list_generator(negative_train_tweets_address, -1, train_list)
+train_list = nltk_input_list_generator(neutral_train_tweets_address, 0, train_list)
+print("The length of train list is: " + str(len(train_list)))
 
-positive_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_positive_dictionary.txt"
-negative_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_negative_dictionary.txt"
+# Training the model
+numIterations = 20
+algorithm = nltk.classify.MaxentClassifier.ALGORITHMS[0]
+print("Training the model...")
+classifier = nltk.MaxentClassifier.train(train_list, algorithm, max_iter=numIterations)
+classifier.show_most_informative_features(10)
 
-positive_words_dictionary = {}
-negative_words_dictionary = {}
-neutral_words_dictionary = {}
+# Saving the model on disk...
+print("Saving the model on disk...")
+model_file = open('MaximumEntropyClassifier', 'wb')
+pickle.dump(classifier, model_file)
+model_file.close()
 
-# Generating the dictionaries
-dictionary_generator(negative_words_dictionary, negative_train_data_address, negative_output_dictionary_address, "negative")
-# dictionary_generator(neutral_words_dictionary, neutral_train_data_address, neutral_output_dictionary_address, "neutral")
-dictionary_generator(positive_words_dictionary, positive_train_data_address, positive_output_dictionary_address, "positive")
-print("All of the dictionaries generated")
+# Generating the test list for positive test tweets
+positive_test_tweets_address = "C://Users//user//Desktop//New Dataset 3//Test//positive_test.txt"
+test_list = nltk_input_list_generator(positive_test_tweets_address, 1, [])
+print("The length of test list for positive test tweets is: " + str(len(test_list)))
+
+# Evaluating the model for positive tweets
+print("Evaluating the model for positive test tweets...")
+true_categorization = 0
+total_positive_test_tweets = len(test_list)
+for tweet_tuple in test_list:
+    tweet_word_dictionary = tweet_tuple[0]
+    main_label = tweet_tuple[1]
+    predicted_label = classifier.classify(tweet_word_dictionary)
+    if main_label == predicted_label:
+        true_categorization += 1
+print("The precision of the model for positive tweets is: " + str(round((true_categorization / total_positive_test_tweets) * 100, 2)) + " %")
+
+# Generating the test list for negative test tweets
+negative_test_tweets_address = "C://Users//user//Desktop//New Dataset 3//Test//negative_test.txt"
+test_list = nltk_input_list_generator(negative_test_tweets_address, -1, [])
+print("The length of test list for negative test tweets is: " + str(len(test_list)))
+
+# Evaluating the model for negative tweets
+print("Evaluating the model for negative test tweets...")
+true_categorization = 0
+total_negative_test_tweets = len(test_list)
+for tweet_tuple in test_list:
+    tweet_word_dictionary = tweet_tuple[0]
+    main_label = tweet_tuple[1]
+    predicted_label = classifier.classify(tweet_word_dictionary)
+    print("main_label: " + str(main_label) + "    predicted_label: " + str(predicted_label))
+    if main_label == predicted_label:
+        true_categorization += 1
+print("The precision of the model for negative tweets is: " + str(round((true_categorization / total_negative_test_tweets) * 100, 2)) + " %")
+
+# Generating the test list for neutral test tweets
+neutral_test_tweets_address = "C://Users//user//Desktop//New Dataset 3//Test//neutral_test.txt"
+test_list = nltk_input_list_generator(neutral_test_tweets_address, 0, [])
+print("The length of test list for neutral test tweets is: " + str(len(test_list)))
+
+# Evaluating the model for neutral tweets
+print("Evaluating the model for neutral test tweets...")
+true_categorization = 0
+total_neutral_test_tweets = len(test_list)
+for tweet_tuple in test_list:
+    tweet_word_dictionary = tweet_tuple[0]
+    main_label = tweet_tuple[1]
+    predicted_label = classifier.classify(tweet_word_dictionary)
+    if main_label == predicted_label:
+        true_categorization += 1
+print("The precision of the model for neutral tweets is: " + str(round((true_categorization / total_neutral_test_tweets) * 100, 2)) + " %")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

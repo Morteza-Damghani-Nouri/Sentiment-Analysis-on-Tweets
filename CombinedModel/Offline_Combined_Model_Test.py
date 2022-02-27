@@ -25,8 +25,8 @@ def dictionary_loader():
     print("Loading dictionaries...")
     positive_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_positive_dictionary.txt"
     negative_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_negative_dictionary.txt"
-    positive_dictionary_file = open(positive_dictionary_address, "rt")
-    negative_dictionary_file = open(negative_dictionary_address, "rt")
+    positive_dictionary_file = open(positive_dictionary_address, "rt", encoding="utf8")
+    negative_dictionary_file = open(negative_dictionary_address, "rt", encoding="utf8")
     positive_dictionary = {}
     negative_dictionary = {}
     total_number_of_negative_words = 0
@@ -131,7 +131,7 @@ def smoother_function(input_word):
 
 # This function generates the needed dictionary
 def nltk_input_list_generator(input_address, data_tag, main_list):
-    input_file = open(input_address, "rt", encoding="cp850")
+    input_file = open(input_address, "rt", encoding="utf8")
     line_counter = 0
     while True:
         comment = input_file.readline().lower()
@@ -146,7 +146,6 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
                     and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she"\
                     and word != "they" and word.find("https") == -1 and word.find("http") == -1:
                 new_word = smoother_function(word)
-                # print(word)
                 if new_word != ".":
                     temp_list.append(new_word)
         main_list.append((list_to_dict_converter(temp_list), data_tag))
@@ -170,17 +169,64 @@ def unique_words_counter(input_positive_dictionary, input_negative_dictionary):
     return counter
 
 
+# This function returns the final classification of combined model
+def final_evaluator(input_nb_results, input_me_results, final_results, expected_tag):
+    true_classification = 0
+    i = 0
+    while i < len(me_results):
+        if input_nb_results[i] == 1 and input_me_results[i] == 1:
+            final_results.append(1)
+            if expected_tag == 1:
+                true_classification += 1
+        if input_nb_results[i] == -1 and input_me_results[i] == -1:
+            final_results.append(-1)
+            if expected_tag == -1:
+                true_classification += 1
+        if input_nb_results[i] == 1 and input_me_results[i] == 0:
+            final_results.append(0)
+            if expected_tag == 0:
+                true_classification += 1
+        if input_nb_results[i] == -1 and input_me_results[i] == 0:
+            final_results.append(0)
+            if expected_tag == 0:
+                true_classification += 1
+
+        if input_nb_results[i] == -1 and input_me_results[i] == 1:
+            final_results.append(-1)
+            if expected_tag == -1:
+                true_classification += 1
+        if input_nb_results[i] == 1 and input_me_results[i] == -1:
+            final_results.append(1)
+            if expected_tag == 1:
+                true_classification += 1
+        if input_nb_results[i] == 0 and input_me_results[i] == 1:
+            final_results.append(1)
+            if expected_tag == 1:
+                true_classification += 1
+        if input_nb_results[i] == 0 and input_me_results[i] == -1:
+            final_results.append(-1)
+            if expected_tag == -1:
+                true_classification += 1
+        if input_nb_results[i] == 0 and input_me_results[i] == 0:
+            final_results.append(0)
+            if expected_tag == 0:
+                true_classification += 1
+        i += 1
+
+    return true_classification
+
+
 # Main part of the code starts here
 # Loading saved models
 print("Loading saved models...")
 positive_comments_dictionary, negative_comments_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words = dictionary_loader()
-model_file = open("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer Engineering Final Project//Maximum Entropy//MaximumEntropyClassifier", "rb")
+model_file = open("MaximumEntropyClassifier", "rb")
 classifier = pickle.load(model_file)
 model_file.close()
 
 # Evaluating the positive test tweets
-positive_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//positive_test_tweets.txt"
-positive_test_comments_file = open(positive_test_comments_file_address, "rt")
+positive_test_comments_file_address = "C://Users//user//Desktop//New Dataset 3//Test//positive_test.txt"
+positive_test_comments_file = open(positive_test_comments_file_address, "rt", encoding="utf8")
 me_results = []
 nb_results = []
 comments_counter = 0
@@ -190,6 +236,7 @@ while True:
     comment = positive_test_comments_file.readline()
     if comment == "":
         break
+
     comment = comment_smoother(comment)
     words_list = comment.split(" ")
     final_result = 0
@@ -215,8 +262,7 @@ while True:
 
 
 # Generating the test list for positive test tweets
-positive_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//positive_test_tweets.txt"
-test_list = nltk_input_list_generator(positive_test_tweets_address, 1, [])
+test_list = nltk_input_list_generator(positive_test_comments_file_address, 1, [])
 
 # Evaluating the model for positive tweets by Maximum Entropy model
 total_positive_test_tweets = len(test_list)
@@ -226,24 +272,14 @@ for tweet_tuple in test_list:
     predicted_label = classifier.classify(tweet_word_dictionary)
     me_results.append(predicted_label)
 final_positive_results = []
-i = 0
-while i < len(me_results):
-    if me_results[i] == 1 and nb_results[i] == 1:
-        final_positive_results.append(1)
-        true_categorization += 1
-    if me_results[i] == -1 and nb_results[i] == -1:
-        final_positive_results.append(-1)
-    if (me_results[i] == 1 and nb_results[i] == -1) or (me_results[i] == -1 and nb_results[i] == 1):
-        final_positive_results.append(0)
-    i += 1
-positive_precision = round((true_categorization / comments_counter) * 100, 2)
+positive_precision = round((final_evaluator(nb_results, me_results, final_positive_results, 1) / comments_counter) * 100, 2)
 
 # Evaluating the negative test tweets
 me_results = []
 nb_results = []
 final_negative_results = []
-negative_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//negative_test_tweets.txt"
-negative_test_comments_file = open(negative_test_comments_file_address, "rt")
+negative_test_comments_file_address = "C://Users//user//Desktop//New Dataset 3//Test//negative_test.txt"
+negative_test_comments_file = open(negative_test_comments_file_address, "rt", encoding="utf8")
 comments_counter = 0
 true_categorization = 0
 while True:
@@ -267,7 +303,6 @@ while True:
             negative_numerator = 1
 
         final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
-
     if final_result < 0:
         nb_results.append(-1)
     if final_result > 0:
@@ -278,8 +313,7 @@ while True:
 
 
 # Generating the test list for negative test tweets
-negative_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Train Dataset for Twitter//Dataset//Complete Dataset//Test//negative_test_tweets.txt"
-test_list = nltk_input_list_generator(negative_test_tweets_address, -1, [])
+test_list = nltk_input_list_generator(negative_test_comments_file_address, -1, [])
 
 # Evaluating the model for negative tweets by Maximum Entropy model
 for tweet_tuple in test_list:
@@ -287,26 +321,56 @@ for tweet_tuple in test_list:
     main_label = tweet_tuple[1]
     predicted_label = classifier.classify(tweet_word_dictionary)
     me_results.append(predicted_label)
-i = 0
-while i < len(me_results):
-    if me_results[i] == 1 and nb_results[i] == 1:
-        final_negative_results.append(1)
-    if me_results[i] == -1 and nb_results[i] == -1:
-        final_negative_results.append(-1)
-        true_categorization += 1
-    if (me_results[i] == 1 and nb_results[i] == -1) or (me_results[i] == -1 and nb_results[i] == 1):
-        final_negative_results.append(0)
-    i += 1
-negative_precision = round((true_categorization / comments_counter) * 100, 2)
+
+negative_precision = round((final_evaluator(nb_results, me_results, final_negative_results, -1) / comments_counter) * 100, 2)
+
+# Evaluating the neutral test tweets
+me_results = []
+nb_results = []
+final_neutral_results = []
+neutral_test_comments_file_address = "C://Users//user//Desktop//New Dataset 3//Test//neutral_test.txt"
+neutral_test_comments_file = open(neutral_test_comments_file_address, "rt", encoding="utf8")
+comments_counter = 0
+true_categorization = 0
+while True:
+    comment = neutral_test_comments_file.readline().lower()
+    if comment == "":
+        break
+    comment = comment_smoother(comment)
+    words_list = comment.split(" ")
+    final_result = 0
+    for word in words_list:
+        if word in positive_comments_dictionary:
+            positive_numerator = positive_comments_dictionary[word] + 1
+        else:
+            positive_numerator = 1
+
+        if word in negative_comments_dictionary:
+            negative_numerator = negative_comments_dictionary[word] + 1
+        else:
+            negative_numerator = 1
+
+        final_result += math.log10((positive_numerator / (total_number_of_positive_dictionary_words + number_of_unique_words)) / (negative_numerator / (total_number_of_negative_dictionary_words + number_of_unique_words)))
+    if final_result < 0:
+        nb_results.append(-1)
+    if final_result > 0:
+        nb_results.append(1)
+    if final_result == 0:
+        nb_results.append(0)
+    comments_counter += 1
+
+
+# Generating the test list for neutral test tweets
+test_list = nltk_input_list_generator(neutral_test_comments_file_address, 0, [])
+
+# Evaluating the model for neutral tweets by Maximum Entropy model
+for tweet_tuple in test_list:
+    tweet_word_dictionary = tweet_tuple[0]
+    main_label = tweet_tuple[1]
+    predicted_label = classifier.classify(tweet_word_dictionary)
+    me_results.append(predicted_label)
+neutral_precision = round((final_evaluator(nb_results, me_results, final_neutral_results, 0) / comments_counter) * 100, 2)
+
 print("The model precision for positive tweets: " + str(positive_precision) + " %")
 print("The model precision for negative tweets: " + str(negative_precision) + " %")
-
-
-
-
-
-
-
-
-
-
+print("The model precision for neutral tweets: " + str(neutral_precision) + " %")
