@@ -23,8 +23,8 @@ def comment_smoother(input_comment):
 # This function loads the negative and positive dictionaries
 def dictionary_loader():
     print("Loading dictionaries...")
-    positive_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_positive_dictionary.txt"
-    negative_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Naive Bayes//Unigram//Dictionaries//unigram_negative_dictionary.txt"
+    positive_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//positive_dictionary.txt"
+    negative_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//negative_dictionary.txt"
     positive_dictionary_file = open(positive_dictionary_address, "rt", encoding="utf8")
     negative_dictionary_file = open(negative_dictionary_address, "rt", encoding="utf8")
     positive_dictionary = {}
@@ -57,7 +57,6 @@ def dictionary_loader():
         positive_dictionary[word] = count
         total_number_of_positive_words += count
 
-
     # Loading negative dictionary
     while True:
         line = negative_dictionary_file.readline()
@@ -83,11 +82,11 @@ def dictionary_loader():
         negative_dictionary[word] = count
         total_number_of_negative_words += count
 
-    print("The length of positive tweets dictionary is: " + str(len(positive_dictionary)))
-    print("Total number of words in positive words dictionary is: " + str(total_number_of_positive_words))
-    print("The length of negative tweets dictionary is: " + str(len(negative_dictionary)))
-    print("Total number of words in negative words dictionary is: " + str(total_number_of_negative_words))
-    print("==============================================================================")
+    # print("The length of positive tweets dictionary is: " + str(len(positive_dictionary)))
+    # print("Total number of words in positive words dictionary is: " + str(total_number_of_positive_words))
+    # print("The length of negative tweets dictionary is: " + str(len(negative_dictionary)))
+    # print("Total number of words in negative words dictionary is: " + str(total_number_of_negative_words))
+    # print("==============================================================================")
     return positive_dictionary, negative_dictionary, total_number_of_positive_words, total_number_of_negative_words
 
 
@@ -112,8 +111,6 @@ def smoother_function(input_word):
         input_word_list.pop(len(input_word_list) - 1)
     while len(input_word_list) != 0 and (input_word_list[0] == "(" or input_word_list[0] == "-" or input_word_list[0] == "*" or input_word_list[0] == "\'" or input_word_list[0] == "\"" or input_word_list[0] == "." or input_word_list[0] == "?" or input_word_list[0] == "[" or input_word_list[0] == "]" or input_word_list[0] == "!"):
         input_word_list.pop(0)
-
-
     output_word = ""
     for char in input_word_list:
         if char not in ENGLISH_CHARS:
@@ -150,7 +147,7 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
                     temp_list.append(new_word)
         main_list.append((list_to_dict_converter(temp_list), data_tag))
         line_counter += 1
-        print(str(line_counter))
+        # print(str(line_counter))
     input_file.close()
     return main_list
 
@@ -190,7 +187,6 @@ def final_evaluator(input_nb_results, input_me_results, final_results, expected_
             final_results.append(0)
             if expected_tag == 0:
                 true_classification += 1
-
         if input_nb_results[i] == -1 and input_me_results[i] == 1:
             final_results.append(-1)
             if expected_tag == -1:
@@ -220,12 +216,12 @@ def final_evaluator(input_nb_results, input_me_results, final_results, expected_
 # Loading saved models
 print("Loading saved models...")
 positive_comments_dictionary, negative_comments_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words = dictionary_loader()
-model_file = open("MaximumEntropyClassifier", "rb")
+model_file = open("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer Engineering Final Project//MaximumEntropy//MaximumEntropyClassifier", "rb")
 classifier = pickle.load(model_file)
 model_file.close()
 
 # Evaluating the positive test tweets
-positive_test_comments_file_address = "C://Users//user//Desktop//New Dataset 3//Test//positive_test.txt"
+positive_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//positive_test.txt"
 positive_test_comments_file = open(positive_test_comments_file_address, "rt", encoding="utf8")
 me_results = []
 nb_results = []
@@ -278,7 +274,7 @@ positive_precision = round((final_evaluator(nb_results, me_results, final_positi
 me_results = []
 nb_results = []
 final_negative_results = []
-negative_test_comments_file_address = "C://Users//user//Desktop//New Dataset 3//Test//negative_test.txt"
+negative_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//negative_test.txt"
 negative_test_comments_file = open(negative_test_comments_file_address, "rt", encoding="utf8")
 comments_counter = 0
 true_categorization = 0
@@ -328,7 +324,7 @@ negative_precision = round((final_evaluator(nb_results, me_results, final_negati
 me_results = []
 nb_results = []
 final_neutral_results = []
-neutral_test_comments_file_address = "C://Users//user//Desktop//New Dataset 3//Test//neutral_test.txt"
+neutral_test_comments_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//neutral_test.txt"
 neutral_test_comments_file = open(neutral_test_comments_file_address, "rt", encoding="utf8")
 comments_counter = 0
 true_categorization = 0

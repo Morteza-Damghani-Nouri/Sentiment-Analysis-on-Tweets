@@ -79,21 +79,17 @@ def dictionary_generator(input_dictionary, input_address, output_address, catego
 
 
 # Main part of the code starts here
-positive_train_data_address = "C://Users//user//Desktop//New Dataset 3//Train//positive_train.txt"
-negative_train_data_address = "C://Users//user//Desktop//New Dataset 3//Train//negative_train.txt"
-neutral_train_data_address = "C://Users//user//Desktop//New Dataset 3//Train//neutral_train (short version).txt"
+positive_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//positive_train.txt"
+negative_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//negative_train.txt"
 
-positive_output_dictionary_address = "C://Users//user//Desktop//New Dataset 3//new dict//positive_dictionary.txt"
-negative_output_dictionary_address = "C://Users//user//Desktop//New Dataset 3//new dict//negative_dictionary.txt"
-neutral_output_dictionary_address = "C://Users//user//Desktop//New Dataset 3//new dict//neutral_dictionary.txt"
+positive_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//positive_dictionary.txt"
+negative_output_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//negative_dictionary.txt"
 
 positive_words_dictionary = {}
 negative_words_dictionary = {}
-neutral_words_dictionary = {}
 
 # Generating the dictionaries
 dictionary_generator(negative_words_dictionary, negative_train_data_address, negative_output_dictionary_address, "negative")
-dictionary_generator(neutral_words_dictionary, neutral_train_data_address, neutral_output_dictionary_address, "neutral")
 dictionary_generator(positive_words_dictionary, positive_train_data_address, positive_output_dictionary_address, "positive")
 print("All of the dictionaries generated")
 
