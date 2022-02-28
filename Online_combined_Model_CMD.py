@@ -1,6 +1,5 @@
 import pickle
 import math
-from Commons import twitter_authenticator
 from Commons import dictionary_loader
 from Commons import nltk_input_list_generator_online_version
 from Commons import comment_smoother
@@ -60,7 +59,8 @@ def sentiment_detector(input_tweet, input_positive_dictionary, input_negative_di
         print(color.WHITE + input_tweet)
     if final_label == -1:
         print(color.RED + input_tweet)
-    print("==============================================================================")
+
+    print(color.RESET + "==============================================================================")
 
 # Main part of the code starts here
 

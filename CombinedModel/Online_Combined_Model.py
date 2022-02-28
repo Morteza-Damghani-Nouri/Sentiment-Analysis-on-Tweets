@@ -8,11 +8,15 @@ from Commons import comment_smoother
 from colorama import Fore as color  # This module is used to print a text with different color
 from Commons import unique_words_counter
 
+
 # This function receives a tweet and prints the tweet and its sentiment class
 def sentiment_detector(input_tweet, input_positive_dictionary, input_negative_dictionary, number_of_positive_words, number_of_negative_words, number_of_unique_words, input_classifier):
     lower_input_tweet = input_tweet.lower()
-    me_predicted_label = input_classifier.classify(nltk_input_list_generator_online_version(lower_input_tweet))
+    nltk_input_dictionary = nltk_input_list_generator_online_version(lower_input_tweet)
+    # print("nltk dictionary: " + str(nltk_input_dictionary))
+    me_predicted_label = input_classifier.classify(nltk_input_dictionary)
     new_input_tweet = comment_smoother(lower_input_tweet)
+    # print("smoothed input tweet: " + str(new_input_tweet))
     words_list = new_input_tweet.split(" ")
     final_result = 0
     for word in words_list:
@@ -60,7 +64,7 @@ def sentiment_detector(input_tweet, input_positive_dictionary, input_negative_di
         print(color.WHITE + input_tweet)
     if final_label == -1:
         print(color.RED + input_tweet)
-    print("==============================================================================")
+    print(color.RESET + "==============================================================================")
 
 # Main part of the code starts here
 # Twitter Authentication
@@ -100,7 +104,7 @@ while i < 4:
        if result.lang == "en":
         received_tweets.append(result.full_text)
         my_dataset.write(result.full_text + "\n")
-        my_dataset.write("==============================================================================")
+        my_dataset.write("==============================================================================\n")
     i += 1
 unique_words_amount = unique_words_counter(positive_comments_dictionary, negative_comments_dictionary)
 for tweet in received_tweets:

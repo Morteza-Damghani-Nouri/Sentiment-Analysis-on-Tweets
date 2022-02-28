@@ -171,6 +171,7 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
     line_counter = 0
     while True:
         comment = input_file.readline().lower()
+        comment = comment_smoother(comment)
         if comment == "":
             break
         words_list = comment.split(" ")
@@ -194,6 +195,7 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
 # This function generates the needed dictionary as an input for nltk library and it is used for online tests
 def nltk_input_list_generator_online_version(input_tweet):
     comment = input_tweet.lower()
+    comment = comment_smoother(comment)
     words_list = comment.split(" ")
     temp_list = []
     for word in words_list:
