@@ -179,7 +179,7 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
             if word != "." and word != "," and word != "  " and word != ";" and word != "\"" and word != "\'" and word != "*" and word != "(" and word != ")" and word != "--" and word != "-" and word != "?" and word != "!" and word != "&" and word != ":" and word != "_"\
                     and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it"\
                     and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she"\
-                    and word != "they" and word.find("https") == -1 and word.find("http") == -1:
+                    and word != "they" and word.find("https") == -1 and word.find("http") == -1 and word != "rt":
                 new_word = me_smoother_function(word)
                 # print(word)
                 if new_word != ".":
@@ -200,7 +200,7 @@ def nltk_input_list_generator_online_version(input_tweet):
         if word != "." and word != "," and word != "  " and word != ";" and word != "\"" and word != "\'" and word != "*" and word != "(" and word != ")" and word != "--" and word != "-" and word != "?" and word != "!" and word != "&" and word != ":" and word != "_" \
                 and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it" \
                 and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she" \
-                and word != "they" and word.find("https") == -1 and word.find("http") == -1:
+                and word != "they" and word.find("https") == -1 and word.find("http") == -1 and word != "rt":
             new_word = me_smoother_function(word)
             # print(word)
             if new_word != ".":
