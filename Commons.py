@@ -191,50 +191,22 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
     return main_list
 
 
-# This function returns the final classification of combined model
-def final_evaluator(input_nb_results, input_me_results, final_results, expected_tag):
-    true_classification = 0
-    i = 0
-    while i < len(input_me_results):
-        if input_nb_results[i] == 1 and input_me_results[i] == 1:
-            final_results.append(1)
-            if expected_tag == 1:
-                true_classification += 1
-        if input_nb_results[i] == -1 and input_me_results[i] == -1:
-            final_results.append(-1)
-            if expected_tag == -1:
-                true_classification += 1
-        if input_nb_results[i] == 1 and input_me_results[i] == 0:
-            final_results.append(0)
-            if expected_tag == 0:
-                true_classification += 1
-        if input_nb_results[i] == -1 and input_me_results[i] == 0:
-            final_results.append(0)
-            if expected_tag == 0:
-                true_classification += 1
-        if input_nb_results[i] == -1 and input_me_results[i] == 1:
-            final_results.append(-1)
-            if expected_tag == -1:
-                true_classification += 1
-        if input_nb_results[i] == 1 and input_me_results[i] == -1:
-            final_results.append(1)
-            if expected_tag == 1:
-                true_classification += 1
-        if input_nb_results[i] == 0 and input_me_results[i] == 1:
-            final_results.append(1)
-            if expected_tag == 1:
-                true_classification += 1
-        if input_nb_results[i] == 0 and input_me_results[i] == -1:
-            final_results.append(-1)
-            if expected_tag == -1:
-                true_classification += 1
-        if input_nb_results[i] == 0 and input_me_results[i] == 0:
-            final_results.append(0)
-            if expected_tag == 0:
-                true_classification += 1
-        i += 1
+# This function generates the needed dictionary as an input for nltk library and it is used for online tests
+def nltk_input_list_generator_online_version(input_tweet):
+    comment = input_tweet.lower()
+    words_list = comment.split(" ")
+    temp_list = []
+    for word in words_list:
+        if word != "." and word != "," and word != "  " and word != ";" and word != "\"" and word != "\'" and word != "*" and word != "(" and word != ")" and word != "--" and word != "-" and word != "?" and word != "!" and word != "&" and word != ":" and word != "_" \
+                and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it" \
+                and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she" \
+                and word != "they" and word.find("https") == -1 and word.find("http") == -1:
+            new_word = me_smoother_function(word)
+            # print(word)
+            if new_word != ".":
+                temp_list.append(new_word)
+    return list_to_dict_converter(temp_list)
 
-    return true_classification
 
 # This function connects to my developer Twitter acount and returns the API
 def twitter_authenticator():
