@@ -5,7 +5,8 @@ from Commons import twitter_authenticator
 from Commons import dictionary_loader
 from Commons import nltk_input_list_generator_online_version
 from Commons import comment_smoother
-
+from colorama import Fore as color  # This module is used to print a text with different color
+from Commons import unique_words_counter
 
 # This function receives a tweet and prints the tweet and its sentiment class
 def sentiment_detector(input_tweet, input_positive_dictionary, input_negative_dictionary, number_of_positive_words, number_of_negative_words, number_of_unique_words, input_classifier):
@@ -54,13 +55,13 @@ def sentiment_detector(input_tweet, input_positive_dictionary, input_negative_di
     if nb_predicted_label == 0 and me_predicted_label == 0:
         final_label = 0
 
-
-
-
-
-
-
-
+    if final_label == 1:
+        print(color.GREEN + input_tweet)
+    if final_label == 0:
+        print(color.WHITE + input_tweet)
+    if final_label == -1:
+        print(color.RED + input_tweet)
+    print("==============================================================================")
 
 # Main part of the code starts here
 # Twitter Authentication
@@ -73,8 +74,6 @@ model_file = open("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer Eng
 classifier = pickle.load(model_file)
 model_file.close()
 
-
-
 # WOEID of Washington
 woeid = 2514815
 
@@ -83,6 +82,7 @@ my_dataset = open("My Dataset.txt", "at", encoding="utf8")
 my_dataset.write("==============================================================================\n")
 
 # fetching the top 50 trends topics in Washington
+print("Receiving trend topics...")
 trends = api.get_place_trends(id=woeid)
 trend_topics_names = []
 for value in trends:
@@ -102,18 +102,9 @@ while i < 4:
         received_tweets.append(result.full_text)
         my_dataset.write(result.full_text + "\n")
     i += 1
-print("len: " + str(len(received_tweets)))
+unique_words_amount = unique_words_counter(positive_comments_dictionary, negative_comments_dictionary)
 for tweet in received_tweets:
-    print(tweet)
-
-
-
-
-
-
-
-
-
+    sentiment_detector(tweet, positive_comments_dictionary, negative_comments_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words, unique_words_amount, classifier)
 my_dataset.close()
 
 
