@@ -20,7 +20,7 @@ def dictionary_generator(input_dictionary, input_address, output_address, catego
     input_file = open(input_address, "rt", encoding="utf8")
     line_counter = 0
     while True:
-        comment = input_file.readline()
+        comment = input_file.readline().lower()
         if comment == "":
             break
 

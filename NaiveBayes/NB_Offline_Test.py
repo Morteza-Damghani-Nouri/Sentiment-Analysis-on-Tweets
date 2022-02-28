@@ -49,7 +49,7 @@ positive_test_comments_file = open(positive_test_comments_file_address, "rt", en
 comments_counter = 0
 true_categorization = 0
 while True:
-    comment = positive_test_comments_file.readline()
+    comment = positive_test_comments_file.readline().lower()
     if comment == "":
         break
     comment = comment_smoother(comment)

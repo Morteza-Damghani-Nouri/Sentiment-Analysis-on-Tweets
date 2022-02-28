@@ -24,7 +24,7 @@ comments_counter = 0
 true_categorization = 0
 number_of_unique_words = unique_words_counter(positive_comments_dictionary, negative_comments_dictionary)
 while True:
-    comment = positive_test_comments_file.readline()
+    comment = positive_test_comments_file.readline().lower()
     if comment == "":
         break
 

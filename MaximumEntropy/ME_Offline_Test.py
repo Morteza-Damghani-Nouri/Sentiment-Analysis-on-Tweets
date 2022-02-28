@@ -14,7 +14,6 @@ test_list = nltk_input_list_generator(positive_test_tweets_address, 1, [])
 print("Number of positive test tweets: " + str(len(test_list)))
 
 # Evaluating the model for positive tweets
-
 true_categorization = 0
 total_positive_test_tweets = len(test_list)
 for tweet_tuple in test_list:

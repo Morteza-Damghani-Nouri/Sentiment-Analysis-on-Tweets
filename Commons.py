@@ -1,21 +1,20 @@
+import tweepy
 ENGLISH_CHARS = ["a", "b", "c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  "A",  "B",  "C",  "D",  "E",  "F",  "G",  "H",  "I",  "J",  "K",  "L",  "M",  "N",  "O",  "P",  "Q",  "R",  "S",  "T",  "U",  "V",  "W",  "X",  "Y",  "Z", "'", "\""]
 
 
 # This function removes redundant characters of an input comment
 def comment_smoother(input_comment):
     input_comment = input_comment.replace(".", "")
-    input_comment = input_comment.replace("-", "")
     input_comment = input_comment.replace(";", "")
     input_comment = input_comment.replace("[", "")
     input_comment = input_comment.replace("]", "")
     input_comment = input_comment.replace(":", "")
-    input_comment = input_comment.replace("*", "")
     input_comment = input_comment.replace("!", "")
     input_comment = input_comment.replace("?", "")
     input_comment = input_comment.replace(",", "")
     input_comment = input_comment.replace(")", "")
     input_comment = input_comment.replace("(", "")
-    input_comment = input_comment.replace("\n", "")
+    input_comment = input_comment.replace("\n", " ")
     return input_comment
 
 
@@ -166,7 +165,7 @@ def list_to_dict_converter(input_word_list):
     return output_dict
 
 
-# This function generates the needed dictionary
+# This function generates the needed dictionary as an input for nltk library
 def nltk_input_list_generator(input_address, data_tag, main_list):
     input_file = open(input_address, "rt", encoding="utf8")
     line_counter = 0
@@ -174,7 +173,6 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
         comment = input_file.readline().lower()
         if comment == "":
             break
-
         words_list = comment.split(" ")
         temp_list = []
         for word in words_list:
@@ -237,3 +235,41 @@ def final_evaluator(input_nb_results, input_me_results, final_results, expected_
         i += 1
 
     return true_classification
+
+# This function connects to my developer Twitter acount and returns the API
+def twitter_authenticator():
+    consumer_key_file = open("E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//My Final Project Twitter API Keys//Consumer Key.txt", "rt")
+    consumer_key = consumer_key_file.readline().rstrip("\n")
+    consumer_key_file.close()
+    consumer_secret_file = open("E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//My Final Project Twitter API Keys//Consumer Secret.txt", "rt")
+    consumer_secret = consumer_secret_file.readline().rstrip("\n")
+    consumer_secret_file.close()
+    access_token_file = open("E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//My Final Project Twitter API Keys//Access Token.txt", "rt")
+    access_token = access_token_file.readline().rstrip("\n")
+    access_token_file.close()
+    access_token_secret_file = open("E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//My Final Project Twitter API Keys//Access Token Secret.txt", "rt")
+    access_token_secret = access_token_secret_file.readline().rstrip("\n")
+    access_token_secret_file.close()
+    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+    return api
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
