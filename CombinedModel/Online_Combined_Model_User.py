@@ -82,8 +82,6 @@ def sentiment_detector():
         T.delete("1.0", "end")
 
 
-
-
 # This function removes the foreground text in text box
 def text_box_foreground_eraser(event):
     T.delete("1.0", "end")
@@ -134,7 +132,6 @@ T.insert(INSERT, "Type tweet here...")
 T.bind("<Button-1>", text_box_foreground_eraser)
 T_scrollbar.config(command=T.yview)
 T_scrollbar.pack(side=RIGHT, fill=Y)
-
 
 # Create button for next text
 b1 = Button(window, text ="Analyze Text", command=sentiment_detector, relief=RIDGE, borderwidth=3, font="calibri 12")
