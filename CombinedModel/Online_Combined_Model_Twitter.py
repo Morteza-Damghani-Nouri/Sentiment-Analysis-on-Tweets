@@ -96,9 +96,8 @@ def tweet_box_refresher():
         for result in results:
             if result.lang == "en":
                 received_tweets.append(result.full_text)
-                my_dataset.write(result.full_text + "\n")
-                my_dataset.write("==============================================================================\n")
         i += 1
+    print("New tweets received")
     T.insert(INSERT, "Top 10 Trend Twitter Topics:\n", "trend_topics")
     for i in range(10):
         if i != 9:
@@ -106,19 +105,10 @@ def tweet_box_refresher():
         else:
             T.insert(END, str(i + 1) + ") " + trend_topics_names[i] + "\n", "topics")
     T.config(state=DISABLED)
-    print("Top 50 trend topics are: ")
-    for name in trend_topics_names:
-        print(name)
-    print("==============================================================================")
+    tweets_text_box.insert(INSERT, "Recent Analyzed Tweets:\n")
     for tweet in received_tweets:
         sentiment_detector(tweet)
     tweets_text_box.config(state=DISABLED)
-
-
-
-
-
-
 
 
 # Main part of the code starts here
@@ -212,10 +202,6 @@ for i in range(10):
     else:
         T.insert(END, str(i + 1) + ") " + trend_topics_names[i] + "\n", "topics")
 T.config(state=DISABLED)
-print("Top 50 trend topics are: ")
-for name in trend_topics_names:
-    print(name)
-print("==============================================================================")
 for tweet in received_tweets:
     sentiment_detector(tweet)
 my_dataset.close()
