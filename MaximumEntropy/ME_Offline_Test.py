@@ -24,6 +24,7 @@ for tweet_tuple in test_list:
         true_categorization += 1
 print("The precision of the model for positive tweets is: " + str(round((true_categorization / total_positive_test_tweets) * 100, 2)) + " %")
 print("================================================================================================================")
+
 # Generating the test list for negative test tweets
 negative_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//negative_test.txt"
 test_list = nltk_input_list_generator(negative_test_tweets_address, -1, [])
@@ -40,6 +41,7 @@ for tweet_tuple in test_list:
         true_categorization += 1
 print("The precision of the model for negative tweets is: " + str(round((true_categorization / total_negative_test_tweets) * 100, 2)) + " %")
 print("================================================================================================================")
+
 # Generating the test list for neutral test tweets
 neutral_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//neutral_test.txt"
 test_list = nltk_input_list_generator(neutral_test_tweets_address, 0, [])
