@@ -12,8 +12,6 @@ from Commons import unique_words_counter
 # This function receives a tweet and prints the tweet and its sentiment class
 def sentiment_detector():
     input_tweet = T.get("1.0", "end")
-    print(input_tweet + "\n=================\n")
-    print(len(input_tweet))
     if input_tweet != "" and input_tweet != " " and input_tweet != " \n" and input_tweet != "\n\n":
         input_positive_dictionary = positive_comments_dictionary
         input_negative_dictionary = negative_comments_dictionary
