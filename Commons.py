@@ -232,10 +232,10 @@ def twitter_authenticator():
 
 
 # This function resizes the background image according to screen width and height
-def background_image_resize(input_screen_width, input_screen_height):
-    image = Image.open('Background_Image.png')
-    new_image = image.resize((input_screen_width, input_screen_height))
-    new_image.save('BackgroundImage_Proper_Size.png')
+def background_image_resize(input_width, input_height, input_image_address, output_image_address):
+    image = Image.open(input_image_address)
+    new_image = image.resize((input_width, input_height))
+    new_image.save(output_image_address)
 
 
 

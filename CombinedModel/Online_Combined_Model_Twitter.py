@@ -74,12 +74,51 @@ def sentiment_detector(input_tweet):
         tweets_text_box.insert(END, "================================================================================\n", "separator")
 
 
-
-
-
-# This function removes the foreground text in text box
-def text_box_foreground_eraser(event):
+# This function receives new tweets and new trend topics by twitter API and shows them on tweet box and trend topics box
+def tweet_box_refresher():
+    T.config(state=NORMAL)
+    tweets_text_box.config(state=NORMAL)
     T.delete("1.0", "end")
+    tweets_text_box.delete("1.0", "end")
+
+    # fetching the top 50 trends topics in Washington
+    print("Receiving trend topics...")
+    trends = api.get_place_trends(id=woeid)
+    trend_topics_names = []
+    for value in trends:
+        for trend in value['trends']:
+            trend_topics_names.append(trend['name'])
+    print("Receiving tweets...")
+    received_tweets = []
+    i = 0
+    while i < 4:
+        results = tweepy.Cursor(api.search_tweets, q=trend_topics_names[i], tweet_mode="extended").items(10)
+        for result in results:
+            if result.lang == "en":
+                received_tweets.append(result.full_text)
+                my_dataset.write(result.full_text + "\n")
+                my_dataset.write("==============================================================================\n")
+        i += 1
+    T.insert(INSERT, "Top 10 Trend Twitter Topics:\n", "trend_topics")
+    for i in range(10):
+        if i != 9:
+            T.insert(END, str(i + 1) + ")  " + trend_topics_names[i] + "\n", "topics")
+        else:
+            T.insert(END, str(i + 1) + ") " + trend_topics_names[i] + "\n", "topics")
+    T.config(state=DISABLED)
+    print("Top 50 trend topics are: ")
+    for name in trend_topics_names:
+        print(name)
+    print("==============================================================================")
+    for tweet in received_tweets:
+        sentiment_detector(tweet)
+    tweets_text_box.config(state=DISABLED)
+
+
+
+
+
+
 
 
 # Main part of the code starts here
@@ -130,10 +169,10 @@ window.title("Twitter Sentiment Analyzer")
 screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
 window.geometry(str(screen_width) + "x" + str(screen_height))
-background_image_resize(screen_width, screen_height)
+background_image_resize(screen_width, screen_height, "Background_Image.png", "Background_Image_Resized.png")
 
 # Setting GUI background image
-img = PhotoImage(file="BackgroundImage_Proper_Size.png")
+img = PhotoImage(file="Background_Image_Resized.png")
 label = Label(window, image=img, border=0)
 label.place(x=0, y=0)
 
@@ -148,26 +187,30 @@ tweets_text_box.tag_config("negative", foreground="red")
 tweets_text_box.tag_config("neutral", foreground="blue")
 tweets_text_box.tag_config("separator", foreground="black")
 
-# Create text widget and specify size
+# Creating text widget and specify size
 input_text_box_frame = tk.Frame(window)
 T_scrollbar = Scrollbar(input_text_box_frame)
-T = Text(input_text_box_frame, height=5, width=70, relief=RIDGE, borderwidth=5, yscrollcommand=T_scrollbar.set, bg="grey", font="calibry 14")
+T = Text(input_text_box_frame, height=5, width=70, relief=RIDGE, borderwidth=5, yscrollcommand=T_scrollbar.set, bg="grey", font="calibry 12")
 T_scrollbar.config(command=T.yview)
 T_scrollbar.pack(side=RIGHT, fill=Y)
 T.tag_config("trend_topics", foreground="red")
 T.tag_config("topics", foreground="orange")
 
+# Creating button for analyzing input tweet
+background_image_resize(50, 50, "Twitter_Icon.png", "Twitter_Icon_Resized.png")
+icon = PhotoImage(file="Twitter_Icon_Resized.png")
+b1 = Button(window, text ="Receive New Tweets", relief=RIDGE, borderwidth=3, font="calibri 12", image=icon, compound=LEFT, bg="white", command=tweet_box_refresher)
 
-# Create button for next text
-b1 = Button(window, text ="Analyze Text", relief=RIDGE, borderwidth=3, font="calibri 12")
-
-# Create an Exit button
-b2 = Button(window, text ="Exit", command = window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12")
+# Creating an Exit button
+b2 = Button(window, text ="Exit", command = window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12", bg="white")
 
 # Showing received data in GUI
 T.insert(INSERT, "Top 10 Trend Twitter Topics:\n", "trend_topics")
 for i in range(10):
-    T.insert(END, str(i + 1) + ")  " + trend_topics_names[i] + "\n", "topics")
+    if i != 9:
+        T.insert(END, str(i + 1) + ")  " + trend_topics_names[i] + "\n", "topics")
+    else:
+        T.insert(END, str(i + 1) + ") " + trend_topics_names[i] + "\n", "topics")
 T.config(state=DISABLED)
 print("Top 50 trend topics are: ")
 for name in trend_topics_names:

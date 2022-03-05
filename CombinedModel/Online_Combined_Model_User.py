@@ -105,10 +105,10 @@ window.title("Sentiment Analyzer")
 screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
 window.geometry(str(screen_width) + "x" + str(screen_height))
-background_image_resize(screen_width, screen_height)
+background_image_resize(screen_width, screen_height, "Background_Image.png", "Background_Image_Resized.png")
 
 # Setting GUI background image
-img = PhotoImage(file="BackgroundImage_Proper_Size.png")
+img = PhotoImage(file="Background_Image_Resized.png")
 label = Label(window, image=img, border=0)
 label.place(x=0, y=0)
 
@@ -124,7 +124,7 @@ tweets_text_box.tag_config("negative", foreground="red")
 tweets_text_box.tag_config("neutral", foreground="blue")
 tweets_text_box.tag_config("separator", foreground="black")
 
-# Create text widget and specify size
+# Creating text widget and specify size
 input_text_box_frame = tk.Frame(window)
 T_scrollbar = Scrollbar(input_text_box_frame)
 T = Text(input_text_box_frame, height=5, width=70, relief=RIDGE, borderwidth=5, yscrollcommand=T_scrollbar.set, bg="grey", font="calibry 14")
@@ -133,10 +133,10 @@ T.bind("<Button-1>", text_box_foreground_eraser)
 T_scrollbar.config(command=T.yview)
 T_scrollbar.pack(side=RIGHT, fill=Y)
 
-# Create button for next text
+# Creating button for receiving new tweets
 b1 = Button(window, text ="Analyze Text", command=sentiment_detector, relief=RIDGE, borderwidth=3, font="calibri 12")
 
-# Create an Exit button
+# Creating an Exit button
 b2 = Button(window, text ="Exit", command = window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12")
 
 tweets_frame.pack(pady=(20, 20))
