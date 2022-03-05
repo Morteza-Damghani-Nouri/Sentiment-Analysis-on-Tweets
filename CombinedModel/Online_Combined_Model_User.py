@@ -1,12 +1,12 @@
 import tkinter as tk    # This library is used for GUI implementation
 from tkinter import *
 import pickle
-from PIL import Image   # This function is used to resize background image according to screen width and height
 import math
 from Commons import dictionary_loader
 from Commons import nltk_input_list_generator_online_version
 from Commons import comment_smoother
 from Commons import unique_words_counter
+from Commons import background_image_resize
 
 
 # This function receives a tweet and prints the tweet and its sentiment class
@@ -81,11 +81,7 @@ def sentiment_detector():
     else:
         T.delete("1.0", "end")
 
-# This function resizes the background image according to screen width and height
-def background_image_resize(input_screen_width, input_screen_height):
-    image = Image.open('Background_Image.png')
-    new_image = image.resize((screen_width, screen_height))
-    new_image.save('BackgroundImage_Proper_Size.png')
+
 
 
 # This function removes the foreground text in text box

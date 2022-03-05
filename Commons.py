@@ -1,4 +1,5 @@
 import tweepy
+from PIL import Image   # This library is used to resize the background image used in GUI
 ENGLISH_CHARS = ["a", "b", "c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  "A",  "B",  "C",  "D",  "E",  "F",  "G",  "H",  "I",  "J",  "K",  "L",  "M",  "N",  "O",  "P",  "Q",  "R",  "S",  "T",  "U",  "V",  "W",  "X",  "Y",  "Z", "'", "\""]
 
 
@@ -230,7 +231,11 @@ def twitter_authenticator():
     return api
 
 
-
+# This function resizes the background image according to screen width and height
+def background_image_resize(input_screen_width, input_screen_height):
+    image = Image.open('Background_Image.png')
+    new_image = image.resize((input_screen_width, input_screen_height))
+    new_image.save('BackgroundImage_Proper_Size.png')
 
 
 
