@@ -104,35 +104,7 @@ def unique_words_counter(input_positive_dictionary, input_negative_dictionary):
 
 
 # This function removes the redundant last characters of words like ?? in that?? and removes numbers and the name of seasons
-def nb_smoother_function(input_word):
-    if input_word.find("0") != -1 or input_word.find("1") != -1 or input_word.find("2") != -1 or input_word.find("3") != -1 or input_word.find("4") != -1 or input_word.find("5") != -1 or input_word.find("6") != -1 or input_word.find("7") != -1 or input_word.find("8") != -1 or input_word.find("9") != -1:
-        return "."
-    if input_word == "january" or input_word == "february" or input_word == "march" or input_word == "april" or input_word == "may" or input_word == "june" or input_word == "july" or input_word == "august" or input_word == "september" or input_word == "october" or input_word == "november" or input_word == "december":
-        return "."
-    if input_word.find("/") != -1 or input_word.find("\\") != -1:
-        return "."
-    input_word_list = list(input_word)
-    while len(input_word_list) != 0 and (input_word_list[len(input_word_list) - 1] == "." or input_word_list[len(input_word_list) - 1] == "-" or input_word_list[len(input_word_list) - 1] == ";" or input_word_list[len(input_word_list) - 1] == "[" or input_word_list[len(input_word_list) - 1] == "]" or input_word_list[len(input_word_list) - 1] == ":" or input_word_list[len(input_word_list) - 1] == "*" or input_word_list[len(input_word_list) - 1] == "!" or input_word_list[len(input_word_list) - 1] == "?" or input_word_list[len(input_word_list) - 1] == "," or input_word_list[len(input_word_list) - 1] == ")" or input_word_list[len(input_word_list) - 1] == "\"" or input_word_list[len(input_word_list) - 1] == "\'"):
-        input_word_list.pop(len(input_word_list) - 1)
-    while len(input_word_list) != 0 and (input_word_list[0] == "(" or input_word_list[0] == "-" or input_word_list[0] == "*" or input_word_list[0] == "\'" or input_word_list[0] == "\"" or input_word_list[0] == "." or input_word_list[0] == "?" or input_word_list[0] == "[" or input_word_list[0] == "]" or input_word_list[0] == "!"):
-        input_word_list.pop(0)
-    output_word = ""
-    for char in input_word_list:
-        if char not in ENGLISH_CHARS:
-            return "."
-        output_word += char
-    if output_word.find(",") != -1 or output_word.find(".") != -1 or output_word.find("(") != -1 or output_word.find(")") != -1 or output_word.find("!") != -1 or output_word.find("?") != -1 or output_word.find(":") != -1 or output_word.find("+") != -1 or output_word.find("@") != -1 or output_word.find("?") != -1 or output_word.find("]") != -1 or output_word.find("[") != -1 or output_word.find("$") != -1 or output_word.find("{") != -1 or output_word.find("}") != -1 or output_word.find("~") != -1 or output_word.find("|") != -1 or output_word.find("#") != -1 or output_word.find("&") != -1 or output_word.find("%") != -1 or output_word.find("=") != -1 or output_word.find(">") != -1 or output_word.find("<") != -1 or output_word.find("+") != -1 or output_word.find("_") != -1 or output_word.find("^") != -1:
-        return "."
-    if output_word == "rt" or output_word == "january" or output_word == "february" or output_word == "march" or output_word == "april" or output_word == "may" or output_word == "june" or output_word == "july" or output_word == "august" or output_word == "september" or output_word == "october" or output_word == "november" or output_word == "december":
-        return "."
-    if output_word != "" and output_word != "\n" and len(output_word) != 1:
-        return output_word.replace("\n", "")
-    else:
-        return "."
-
-
-# This function removes the redundant last characters of words like ?? in that?? and removes numbers and the name of seasons
-def me_smoother_function(input_word):
+def smoother_function(input_word):
     if input_word.find("0") != -1 or input_word.find("1") != -1 or input_word.find("2") != -1 or input_word.find("3") != -1 or input_word.find("4") != -1 or input_word.find("5") != -1 or input_word.find("6") != -1 or input_word.find("7") != -1 or input_word.find("8") != -1 or input_word.find("9") != -1:
         return "."
     if input_word == "january" or input_word == "february" or input_word == "march" or input_word == "april" or input_word == "may" or input_word == "june" or input_word == "july" or input_word == "august" or input_word == "september" or input_word == "october" or input_word == "november" or input_word == "december":
@@ -158,6 +130,7 @@ def me_smoother_function(input_word):
     else:
         return "."
 
+
 # This function converts the input list to dictionary format which is accepted in NLTK library
 def list_to_dict_converter(input_word_list):
     output_dict = {}
@@ -182,7 +155,7 @@ def nltk_input_list_generator(input_address, data_tag, main_list):
                     and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it"\
                     and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she"\
                     and word != "they" and word.find("https") == -1 and word.find("http") == -1 and word != "rt" and word != "david" and word != "scotland":
-                new_word = me_smoother_function(word)
+                new_word = smoother_function(word)
                 # print(word)
                 if new_word != ".":
                     temp_list.append(new_word)
@@ -204,7 +177,7 @@ def nltk_input_list_generator_online_version(input_tweet):
                 and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it" \
                 and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she" \
                 and word != "they" and word.find("https") == -1 and word.find("http") == -1 and word != "rt" and word != "david" and word != "scotland":
-            new_word = me_smoother_function(word)
+            new_word = smoother_function(word)
             # print(word)
             if new_word != ".":
                 temp_list.append(new_word)

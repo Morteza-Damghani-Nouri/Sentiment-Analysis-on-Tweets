@@ -1,4 +1,4 @@
-from Commons import nb_smoother_function
+from Commons import smoother_function
 
 
 # This function receives a list which is sorted by sorted function and produces the output dictionary file
@@ -29,8 +29,8 @@ def dictionary_generator(input_dictionary, input_address, output_address, catego
             if word != "." and word != "," and word != "  " and word != ";" and word != "\"" and word != "\'" and word != "*" and word != "(" and word != ")" and word != "--" and word != "-" and word != "?" and word != "!" and word != "&" and word != ":" and word != "_"\
                     and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it"\
                     and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she"\
-                    and word != "they" and word.find("https") == -1 and word.find("http") == -1:
-                new_word = nb_smoother_function(word)
+                    and word != "they" and word.find("https") == -1 and word.find("http") == -1 and word != "rt" and word != "david" and word != "scotland":
+                new_word = smoother_function(word)
                 # print(word)
                 if new_word != ".":
                     if new_word in input_dictionary:
