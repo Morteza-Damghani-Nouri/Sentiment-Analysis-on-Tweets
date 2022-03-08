@@ -211,15 +211,145 @@ def background_image_resize(input_width, input_height, input_image_address, outp
     new_image.save(output_image_address)
 
 
+# This function loads the negative and positive dictionaries and it is used in FCNN code
+def dictionary_loader_fcnn():
+    print("Loading dictionaries...")
+    positive_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//positive_dictionary.txt"
+    negative_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//negative_dictionary.txt"
+    positive_dictionary_file = open(positive_dictionary_address, "rt", encoding="utf8")
+    negative_dictionary_file = open(negative_dictionary_address, "rt", encoding="utf8")
+    positive_dictionary = {}
+    negative_dictionary = {}
+
+    # Loading positive dictionary
+    while True:
+        line = positive_dictionary_file.readline()
+        if line == "":
+            break
+        index = line.find(" ")
+        line_list = list(line)
+        i = 0
+        word = ""
+        while i < index:
+            word += line_list[i]
+            i += 1
+        i = 1
+        while i <= 30:
+            line_list.pop(0)
+            i += 1
+        count = ""
+        i = 0
+        while i < len(line_list):
+            count += line_list[i]
+            i += 1
+        count = int(count)
+        positive_dictionary[word] = count
+
+    # Loading negative dictionary
+    while True:
+        line = negative_dictionary_file.readline()
+        if line == "":
+            break
+        index = line.find(" ")
+        line_list = list(line)
+        i = 0
+        word = ""
+        while i < index:
+            word += line_list[i]
+            i += 1
+        i = 1
+        while i <= 30:
+            line_list.pop(0)
+            i += 1
+        count = ""
+        i = 0
+        while i < len(line_list):
+            count += line_list[i]
+            i += 1
+        count = int(count)
+        negative_dictionary[word] = count
+
+    return positive_dictionary, negative_dictionary
+
+# This function generates the dictionary which is used in the neural network
+def model_dictionary_generator():
+    output_model_dictionary = {"": 0}
+    positive_comments_dictionary, negative_comments_dictionary = dictionary_loader_fcnn()
+    i = 0
+    positive_words_list = list(positive_comments_dictionary.keys())
+    while i < len(positive_words_list):
+        if positive_words_list[i] not in output_model_dictionary:
+            output_model_dictionary[positive_words_list[i]] = len(output_model_dictionary)
+        i += 1
+    negative_words_list = list(negative_comments_dictionary.keys())
+    for word in negative_words_list:
+        if word not in positive_comments_dictionary:
+            output_model_dictionary[word] = len(output_model_dictionary)
+
+    return output_model_dictionary
 
 
+# This function generates lists like train_y or test_y
+def y_list_generator(input_size, input_tag):
+    output_list = []
+    i = 1
+    while i <= input_size:
+        output_list.append(input_tag)
+        i += 1
+    return output_list
 
 
+# This function converts an input string list to a list
+def string_to_list_converter(input_string):
+    output_list = []
+    primary_list = input_string.split(" ")
+    for element in primary_list:
+        element = element.replace(",", "")
+        element = element.replace("[", "")
+        element = element.replace("]", "")
+        output_list.append(int(element))
+
+    return output_list
 
 
+# This function reads the train_x or test_x lists from a file and stores them in a list
+def x_file_reader(file_address):
+    output_list = []
+    file = open(file_address, "rt")
+    counter = 1
+    while True:
+        temp = file.readline()
+        if temp == "":
+            break
+        temp = temp.replace("\n", "")
+        output_list.append(string_to_list_converter(temp))
+        # print(counter)
+        counter += 1
+    file.close()
+    return output_list
 
 
-
+# This function receives a list of data and the desired tag and returns the accuracy. if a data is exactly 1/2 then the related element in the list will be -1
+def evaluate(input_data, desired_tag):
+    data_tag_list = []
+    i = 0
+    while i < len(input_data):
+        maximum = max(input_data[i][0], input_data[i][1], input_data[i][2])
+        if maximum == input_data[i][0]:
+            data_tag_list.append("positive")
+        if maximum == input_data[i][1]:
+            data_tag_list.append("neutral")
+        if maximum == input_data[i][2]:
+            data_tag_list.append("negative")
+        i += 1
+    correct_counter = 0
+    i = 0
+    while i < len(data_tag_list):
+        if data_tag_list[i] == desired_tag:
+            correct_counter += 1
+        i += 1
+    # print("The data tag list length is: " + str(len(data_tag_list)))
+    return round((correct_counter / len(data_tag_list)) * 100, 2)
 
 
 
