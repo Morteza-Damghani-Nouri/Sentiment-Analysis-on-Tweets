@@ -9,48 +9,95 @@ from Commons import x_file_reader
 
 
 # This function returns the final classification of combined model
-def final_evaluator(input_nb_results, input_me_results, final_results, expected_tag):
-    true_classification = 0
+def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expected_tag):
+    final_results = []
     i = 0
-    while i < len(input_me_results):
-        if input_nb_results[i] == 1 and input_me_results[i] == 1:
+    while i < len(input_nb_results):
+        if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
             final_results.append(1)
-            if expected_tag == 1:
-                true_classification += 1
-        if input_nb_results[i] == -1 and input_me_results[i] == -1:
+        if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
             final_results.append(-1)
-            if expected_tag == -1:
-                true_classification += 1
-        if input_nb_results[i] == 1 and input_me_results[i] == 0:
+        if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
             final_results.append(0)
-            if expected_tag == 0:
-                true_classification += 1
-        if input_nb_results[i] == -1 and input_me_results[i] == 0:
-            final_results.append(0)
-            if expected_tag == 0:
-                true_classification += 1
-        if input_nb_results[i] == -1 and input_me_results[i] == 1:
-            final_results.append(-1)
-            if expected_tag == -1:
-                true_classification += 1
-        if input_nb_results[i] == 1 and input_me_results[i] == -1:
-            final_results.append(1)
-            if expected_tag == 1:
-                true_classification += 1
-        if input_nb_results[i] == 0 and input_me_results[i] == 1:
-            final_results.append(1)
-            if expected_tag == 1:
-                true_classification += 1
-        if input_nb_results[i] == 0 and input_me_results[i] == -1:
-            final_results.append(-1)
-            if expected_tag == -1:
-                true_classification += 1
-        if input_nb_results[i] == 0 and input_me_results[i] == 0:
-            final_results.append(0)
-            if expected_tag == 0:
-                true_classification += 1
+        if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
+            pass
+        if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
+            pass
+
+
+
+
+
+
         i += 1
-    return true_classification
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # This function creates the neural network model for testing
