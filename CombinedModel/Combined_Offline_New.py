@@ -20,59 +20,197 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
             final_results.append(0)
         if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
-            pass
+            maximum_positive = max(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
+            minimum_positive = min(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
+            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            if final_positive_precision >= FCNN_NEGATIVE_PRECISION:
+                final_results.append(1)
+            else:
+                final_results.append(-1)
         if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
-            pass
+            maximum_positive = max(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            minimum_positive = min(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            if final_positive_precision >= ME_NEGATIVE_PRECISION:
+                final_results.append(1)
+            else:
+                final_results.append(-1)
         if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
-            pass
+            maximum_positive = max(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            minimum_positive = min(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            if final_positive_precision >= NB_NEGATIVE_PRECISION:
+                final_results.append(1)
+            else:
+                final_results.append(-1)
         if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
-            pass
+            maximum_positive = max(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
+            minimum_positive = min(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
+            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            if final_positive_precision >= FCNN_NEUTRAL_PRECISION:
+                final_results.append(1)
+            else:
+                final_results.append(0)
         if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
-            pass
+            maximum_positive = max(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            minimum_positive = min(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            if final_positive_precision >= ME_NEUTRAL_PRECISION:
+                final_results.append(1)
+            else:
+                final_results.append(0)
         if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
-            pass
+            maximum_positive = max(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            minimum_positive = min(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            if final_positive_precision >= NB_NEUTRAL_PRECISION:
+                final_results.append(1)
+            else:
+                final_results.append(0)
         if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
-            pass
+            maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEGATIVE_PRECISION, FCNN_NEUTRAL_PRECISION)
+            if maximum_precision == NB_POSITIVE_PRECISION:
+                final_results.append(1)
+            if maximum_precision == ME_NEGATIVE_PRECISION:
+                final_results.append(-1)
+            if maximum_precision == FCNN_NEUTRAL_PRECISION:
+                final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
-            pass
+            maximum_precision = max(NB_NEGATIVE_PRECISION, ME_POSITIVE_PRECISION, FCNN_NEUTRAL_PRECISION)
+            if maximum_precision == NB_NEGATIVE_PRECISION:
+                final_results.append(-1)
+            if maximum_precision == ME_POSITIVE_PRECISION:
+                final_results.append(1)
+            if maximum_precision == FCNN_NEUTRAL_PRECISION:
+                final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
-            pass
+            maximum_precision = max(NB_NEGATIVE_PRECISION, ME_NEUTRAL_PRECISION, FCNN_POSITIVE_PRECISION)
+            if maximum_precision == NB_NEGATIVE_PRECISION:
+                final_results.append(-1)
+            if maximum_precision == ME_NEUTRAL_PRECISION:
+                final_results.append(0)
+            if maximum_precision == FCNN_POSITIVE_PRECISION:
+                final_results.append(1)
         if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
-            pass
+            maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEUTRAL_PRECISION, FCNN_NEGATIVE_PRECISION)
+            if maximum_precision == NB_POSITIVE_PRECISION:
+                final_results.append(1)
+            if maximum_precision == ME_NEUTRAL_PRECISION:
+                final_results.append(0)
+            if maximum_precision == FCNN_NEGATIVE_PRECISION:
+                final_results.append(-1)
         if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
-            pass
+            maximum_precision = max(NB_NEUTRAL_PRECISION, ME_POSITIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            if maximum_precision == NB_NEUTRAL_PRECISION:
+                final_results.append(0)
+            if maximum_precision == ME_POSITIVE_PRECISION:
+                final_results.append(1)
+            if maximum_precision == FCNN_NEGATIVE_PRECISION:
+                final_results.append(-1)
         if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
-            pass
+            maximum_precision = max(NB_NEUTRAL_PRECISION, ME_NEGATIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+            if maximum_precision == NB_NEUTRAL_PRECISION:
+                final_results.append(0)
+            if maximum_precision == ME_NEGATIVE_PRECISION:
+                final_results.append(-1)
+            if maximum_precision == FCNN_POSITIVE_PRECISION:
+                final_results.append(1)
         if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
-            pass
+            maximum_negative = max(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
+            minimum_negative = min(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
+            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            if final_negative_precision >= FCNN_POSITIVE_PRECISION:
+                final_results.append(-1)
+            else:
+                final_results.append(1)
         if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
-            pass
+            maximum_negative = max(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            minimum_negative = min(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            if final_negative_precision >= ME_POSITIVE_PRECISION:
+                final_results.append(-1)
+            else:
+                final_results.append(1)
         if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
-            pass
+            maximum_negative = max(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            minimum_negative = min(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            if final_negative_precision >= NB_POSITIVE_PRECISION:
+                final_results.append(-1)
+            else:
+                final_results.append(1)
         if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
-            pass
+            maximum_neutral = max(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            minimum_neutral = min(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            if final_neutral_precision >= NB_POSITIVE_PRECISION:
+                final_results.append(0)
+            else:
+                final_results.append(1)
         if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
-            pass
+            maximum_neutral = max(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            minimum_neutral = min(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            if final_neutral_precision >= ME_POSITIVE_PRECISION:
+                final_results.append(0)
+            else:
+                final_results.append(1)
         if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
-            pass
+            maximum_neutral = max(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
+            minimum_neutral = min(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
+            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            if final_neutral_precision >= FCNN_POSITIVE_PRECISION:
+                final_results.append(0)
+            else:
+                final_results.append(1)
         if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
-            pass
+            maximum_negative = max(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            minimum_negative = min(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            if final_negative_precision >= NB_NEUTRAL_PRECISION:
+                final_results.append(-1)
+            else:
+                final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
-            pass
+            maximum_negative = max(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            minimum_negative = min(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            if final_negative_precision >= ME_NEUTRAL_PRECISION:
+                final_results.append(-1)
+            else:
+                final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
-            pass
+            maximum_negative = max(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
+            minimum_negative = min(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
+            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            if final_negative_precision >= FCNN_NEUTRAL_PRECISION:
+                final_results.append(-1)
+            else:
+                final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
-            pass
+            maximum_neutral = max(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            minimum_neutral = min(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            if final_neutral_precision >= NB_NEGATIVE_PRECISION:
+                final_results.append(0)
+            else:
+                final_results.append(-1)
         if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
-            pass
+            maximum_neutral = max(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            minimum_neutral = min(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
+            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            if final_neutral_precision >= ME_NEGATIVE_PRECISION:
+                final_results.append(0)
+            else:
+                final_results.append(-1)
         if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
-            pass
-
-
-
-
-
-
+            maximum_neutral = max(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
+            minimum_neutral = min(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
+            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            if final_neutral_precision >= FCNN_NEGATIVE_PRECISION:
+                final_results.append(0)
+            else:
+                final_results.append(-1)
         i += 1
 
 
