@@ -1,10 +1,7 @@
 import tkinter as tk    # This library is used for GUI implementation
 from tkinter import *
 import pickle
-import math
 from Commons import dictionary_loader
-from Commons import nltk_input_list_generator_online_version
-from Commons import comment_smoother
 from Commons import unique_words_counter
 from Commons import background_image_resize
 from Commons import create_model
@@ -16,6 +13,7 @@ from Commons import nb_predictor_online_version
 from Commons import me_predictor_online_version
 from Commons import fcnn_predictor_online_version
 from Commons import data_loader_online_version
+from Commons import model_dictionary_generator
 
 
 # This function finds the most accurate method among avalaible methods according to precision
@@ -47,7 +45,7 @@ def final_evaluator():
     if input_tweet != "" and input_tweet != " " and input_tweet != " \n" and input_tweet != "\n\n":
         input_nb_results = nb_predictor_online_version(input_tweet, positive_tweets_dictionary, negative_tweets_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words, number_of_unique_words)
         input_me_results = me_predictor_online_version(input_tweet, me_classifier)
-        input_fcnn_results = fcnn_predictor_online_version(data_loader_online_version(input_tweet, fcnn_model), fcnn_model)
+        input_fcnn_results = fcnn_predictor_online_version(data_loader_online_version(input_tweet, fcnn_model_dictionary), fcnn_model)
         best_method_precision, best_method_name = best_method_finder()
         final_results = []
         i = 0
@@ -383,6 +381,7 @@ me_model_file = open("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer 
 me_classifier = pickle.load(me_model_file)
 me_model_file.close()
 fcnn_model = create_model()
+fcnn_model_dictionary = model_dictionary_generator()
 fcnn_model.load_weights("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer Engineering Final Project//FCNN//Checkpoints//Main Trained Model//my_checkpoint1")
 number_of_unique_words = unique_words_counter(positive_tweets_dictionary, negative_tweets_dictionary)
 

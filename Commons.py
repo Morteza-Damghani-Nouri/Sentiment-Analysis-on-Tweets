@@ -443,11 +443,9 @@ def me_predictor(input_test_file_address, input_desired_label, input_classifier)
 # This function generates Maximum Entropy model results for the input tweet and this function is used in online version code
 def me_predictor_online_version(input_tweet, input_classifier):
     output_results = []
-    test_tweets_list = nltk_input_list_generator_online_version(input_tweet)
-    for tweet_tuple in test_tweets_list:
-        tweet_word_dictionary = tweet_tuple[0]
-        predicted_label = input_classifier.classify(tweet_word_dictionary)
-        output_results.append(predicted_label)
+    tweet_word_dictionary = nltk_input_list_generator_online_version(input_tweet)
+    predicted_label = input_classifier.classify(tweet_word_dictionary)
+    output_results.append(predicted_label)
     return output_results
 
 
