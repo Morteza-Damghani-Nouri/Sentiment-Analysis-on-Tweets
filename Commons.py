@@ -273,6 +273,7 @@ def dictionary_loader_fcnn():
 
     return positive_dictionary, negative_dictionary
 
+
 # This function generates the dictionary which is used in the neural network
 def model_dictionary_generator():
     output_model_dictionary = {"": 0}
@@ -469,8 +470,7 @@ def fcnn_predictor(input_test_x_file_address, input_fcnn_model):
 # This function generates FCNN model results for the input tweet and this function is used in online version code
 def fcnn_predictor_online_version(input_tweet, input_fcnn_model):
     output_results = []
-    test_x = [input_tweet]
-    model_predictions = input_fcnn_model.predict(test_x)
+    model_predictions = input_fcnn_model.predict(input_tweet)
     for prediction in model_predictions:
         maximum = max(prediction[0], prediction[1], prediction[2])
         if maximum == prediction[0]:
@@ -491,7 +491,37 @@ def precision_calculator(input_results, input_desired_label):
     return round((counter / len(input_results)) * 100, 2)
 
 
+# This function generates data with proper format to be fed to the fully connected neural network
+def data_loader_online_version(input_tweet, input_model_dictionary):
+    output_list = []
+    comment = input_tweet
+    words_list = comment.split(" ")
+    temp_list = []
+    for word in words_list:
+        if word != "." and word != "," and word != "  " and word != ";" and word != "\"" and word != "\'" and word != "*" and word != "(" and word != ")" and word != "--" and word != "-" and word != "?" and word != "!" and word != "&" and word != ":" and word != "_" \
+                and word != "the" and word != "and" and word != "a" and word != "i" and word != "to" and word != "of" and word != "this" and word != "that" and word != "it" \
+                and word != "in" and word != "for" and word != "you" and word != "with" and word != "on" and word != "at" and word != "an" and word != "we" and word != "he" and word != "she" \
+                and word != "they" and word.find("https") == -1 and word.find("http") == -1 and word != "rt" and word != "david" and word != "scotland":
+            new_word = smoother_function(word)
+            if new_word != ".":
+                if new_word in input_model_dictionary:
+                    temp_list.append(input_model_dictionary[new_word])
 
+    i = 47 - len(temp_list)
+    if i < 0:
+        new_temp_list = []
+        m = 0
+        while m <= 46:
+            new_temp_list.append(temp_list[m])
+            m += 1
+        output_list.append(new_temp_list)
+    else:
+        j = 1
+        while j <= i:
+            temp_list.append(0)
+            j += 1
+        output_list.append(temp_list)
+    return output_list
 
 
 
