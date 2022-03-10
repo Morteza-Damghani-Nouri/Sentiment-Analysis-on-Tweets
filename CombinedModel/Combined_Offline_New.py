@@ -6,10 +6,34 @@ from Commons import dictionary_loader
 from Commons import nltk_input_list_generator
 from Commons import unique_words_counter
 from Commons import x_file_reader
+round(max((NB_POSITIVE_PRECISION + NB_NEGATIVE_PRECISION + NB_NEUTRAL_PRECISION) / 3, (ME_POSITIVE_PRECISION + ME_NEGATIVE_PRECISION + ME_NEUTRAL_PRECISION) / 3, (FCNN_POSITIVE_PRECISION + FCNN_NEGATIVE_PRECISION + FCNN_NEUTRAL_PRECISION) / 3), 2)
+
+# This function finds the most accurate method among avalaible methods according to precision
+def best_method_finder():
+    nb_average_precision = (NB_POSITIVE_PRECISION + NB_NEGATIVE_PRECISION + NB_NEUTRAL_PRECISION) / 3
+    me_average_precision = (ME_POSITIVE_PRECISION + ME_NEGATIVE_PRECISION + ME_NEUTRAL_PRECISION) / 3
+    fcnn_average_precision = (FCNN_POSITIVE_PRECISION + FCNN_NEGATIVE_PRECISION + FCNN_NEUTRAL_PRECISION) / 3
+    if nb_average_precision == me_average_precision:
+        print("The precision of Naive Bayes method and Maximum Entropy method are equal. Unable to find the best method according to average precision.")
+        exit(1)
+    if nb_average_precision == fcnn_average_precision:
+        print("The precision of Naive Bayes method and Fully Connected Neural Network method are equal. Unable to find the best method according to average precision.")
+        exit(1)
+    if me_average_precision == fcnn_average_precision:
+        print("The precision of Maximum Entropy method and Fully Connected Neural Network method are equal. Unable to find the best method according to average precision.")
+        exit(1)
+    maximum_precision = max(nb_average_precision, me_average_precision, fcnn_average_precision)
+    if maximum_precision == nb_average_precision:
+        return maximum_precision, "nb"
+    if maximum_precision == me_average_precision:
+        return maximum_precision, "me"
+    if maximum_precision == fcnn_average_precision:
+        return maximum_precision, "fcnn"
 
 
 # This function returns the final classification of combined model
 def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expected_tag):
+    best_method_precision, best_method_name = best_method_finder()
     final_results = []
     i = 0
     while i < len(input_nb_results):
@@ -67,54 +91,157 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
                 final_results.append(1)
             else:
                 final_results.append(0)
+        # here
         if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
-            maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEGATIVE_PRECISION, FCNN_NEUTRAL_PRECISION)
-            if maximum_precision == NB_POSITIVE_PRECISION:
-                final_results.append(1)
-            if maximum_precision == ME_NEGATIVE_PRECISION:
-                final_results.append(-1)
-            if maximum_precision == FCNN_NEUTRAL_PRECISION:
-                final_results.append(0)
+            if best_method_name == "nb":
+                maximum_precision = max(NB_POSITIVE_PRECISION + (best_method_precision / 20), ME_NEGATIVE_PRECISION, FCNN_NEUTRAL_PRECISION)
+                if maximum_precision == (NB_POSITIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(1)
+                if maximum_precision == ME_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == FCNN_NEUTRAL_PRECISION:
+                    final_results.append(0)
+            if best_method_name == "me":
+                maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEGATIVE_PRECISION + (best_method_precision / 20), FCNN_NEUTRAL_PRECISION)
+                if maximum_precision == NB_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == (ME_NEGATIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(-1)
+                if maximum_precision == FCNN_NEUTRAL_PRECISION:
+                    final_results.append(0)
+            if best_method_name == "fcnn":
+                maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEGATIVE_PRECISION, FCNN_NEUTRAL_PRECISION + (best_method_precision /20))
+                if maximum_precision == (NB_POSITIVE_PRECISION):
+                    final_results.append(1)
+                if maximum_precision == ME_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == (FCNN_NEUTRAL_PRECISION + (best_method_precision / 20)):
+                    final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
-            maximum_precision = max(NB_NEGATIVE_PRECISION, ME_POSITIVE_PRECISION, FCNN_NEUTRAL_PRECISION)
-            if maximum_precision == NB_NEGATIVE_PRECISION:
-                final_results.append(-1)
-            if maximum_precision == ME_POSITIVE_PRECISION:
-                final_results.append(1)
-            if maximum_precision == FCNN_NEUTRAL_PRECISION:
-                final_results.append(0)
+            if best_method_name == "nb":
+                maximum_precision = max(NB_NEGATIVE_PRECISION + (best_method_precision / 20), ME_POSITIVE_PRECISION, FCNN_NEUTRAL_PRECISION)
+                if maximum_precision == (NB_NEGATIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(-1)
+                if maximum_precision == ME_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == FCNN_NEUTRAL_PRECISION:
+                    final_results.append(0)
+            if best_method_name == "me":
+                maximum_precision = max(NB_NEGATIVE_PRECISION, ME_POSITIVE_PRECISION + (best_method_precision / 20), FCNN_NEUTRAL_PRECISION)
+                if maximum_precision == NB_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == (ME_POSITIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(1)
+                if maximum_precision == FCNN_NEUTRAL_PRECISION:
+                    final_results.append(0)
+            if best_method_name == "fcnn":
+                maximum_precision = max(NB_NEGATIVE_PRECISION, ME_POSITIVE_PRECISION, FCNN_NEUTRAL_PRECISION + (best_method_precision / 20))
+                if maximum_precision == NB_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == ME_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == (FCNN_NEUTRAL_PRECISION + (best_method_precision / 20)):
+                    final_results.append(0)
         if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
-            maximum_precision = max(NB_NEGATIVE_PRECISION, ME_NEUTRAL_PRECISION, FCNN_POSITIVE_PRECISION)
-            if maximum_precision == NB_NEGATIVE_PRECISION:
-                final_results.append(-1)
-            if maximum_precision == ME_NEUTRAL_PRECISION:
-                final_results.append(0)
-            if maximum_precision == FCNN_POSITIVE_PRECISION:
-                final_results.append(1)
+            if best_method_name == "nb":
+                maximum_precision = max(NB_NEGATIVE_PRECISION + (best_method_precision / 20), ME_NEUTRAL_PRECISION, FCNN_POSITIVE_PRECISION)
+                if maximum_precision == (NB_NEGATIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(-1)
+                if maximum_precision == ME_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == FCNN_POSITIVE_PRECISION:
+                    final_results.append(1)
+            if best_method_name == "me":
+                maximum_precision = max(NB_NEGATIVE_PRECISION, ME_NEUTRAL_PRECISION + (best_method_precision / 20), FCNN_POSITIVE_PRECISION)
+                if maximum_precision == NB_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == (ME_NEUTRAL_PRECISION + (best_method_precision / 20)):
+                    final_results.append(0)
+                if maximum_precision == FCNN_POSITIVE_PRECISION:
+                    final_results.append(1)
+            if best_method_name == "fcnn":
+                maximum_precision = max(NB_NEGATIVE_PRECISION, ME_NEUTRAL_PRECISION, FCNN_POSITIVE_PRECISION + (best_method_precision / 20))
+                if maximum_precision == NB_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == ME_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == (FCNN_POSITIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(1)
         if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
-            maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEUTRAL_PRECISION, FCNN_NEGATIVE_PRECISION)
-            if maximum_precision == NB_POSITIVE_PRECISION:
-                final_results.append(1)
-            if maximum_precision == ME_NEUTRAL_PRECISION:
-                final_results.append(0)
-            if maximum_precision == FCNN_NEGATIVE_PRECISION:
-                final_results.append(-1)
+            if best_method_name == "nb":
+                maximum_precision = max(NB_POSITIVE_PRECISION + (best_method_precision / 20), ME_NEUTRAL_PRECISION, FCNN_NEGATIVE_PRECISION)
+                if maximum_precision == (NB_POSITIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(1)
+                if maximum_precision == ME_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == FCNN_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+            if best_method_name == "me":
+                maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEUTRAL_PRECISION + (best_method_precision / 20), FCNN_NEGATIVE_PRECISION)
+                if maximum_precision == NB_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == (ME_NEUTRAL_PRECISION + (best_method_precision / 20)):
+                    final_results.append(0)
+                if maximum_precision == FCNN_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+            if best_method_name == "fcnn":
+                maximum_precision = max(NB_POSITIVE_PRECISION, ME_NEUTRAL_PRECISION, FCNN_NEGATIVE_PRECISION + (best_method_precision / 20))
+                if maximum_precision == NB_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == ME_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == (FCNN_NEGATIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(-1)
         if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
-            maximum_precision = max(NB_NEUTRAL_PRECISION, ME_POSITIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
-            if maximum_precision == NB_NEUTRAL_PRECISION:
-                final_results.append(0)
-            if maximum_precision == ME_POSITIVE_PRECISION:
-                final_results.append(1)
-            if maximum_precision == FCNN_NEGATIVE_PRECISION:
-                final_results.append(-1)
+            if best_method_name == "nb":
+                maximum_precision = max(NB_NEUTRAL_PRECISION + (best_method_precision / 20), ME_POSITIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
+                if maximum_precision == (NB_NEUTRAL_PRECISION + (best_method_precision / 20)):
+                    final_results.append(0)
+                if maximum_precision == ME_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == FCNN_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+            if best_method_name == "me":
+                maximum_precision = max(NB_NEUTRAL_PRECISION, ME_POSITIVE_PRECISION + (best_method_precision / 20), FCNN_NEGATIVE_PRECISION)
+                if maximum_precision == NB_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == (ME_POSITIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(1)
+                if maximum_precision == FCNN_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+            if best_method_name == "fcnn":
+                maximum_precision = max(NB_NEUTRAL_PRECISION, ME_POSITIVE_PRECISION, FCNN_NEGATIVE_PRECISION + (best_method_precision / 20))
+                if maximum_precision == NB_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == ME_POSITIVE_PRECISION:
+                    final_results.append(1)
+                if maximum_precision == (FCNN_NEGATIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(-1)
         if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
-            maximum_precision = max(NB_NEUTRAL_PRECISION, ME_NEGATIVE_PRECISION, FCNN_POSITIVE_PRECISION)
-            if maximum_precision == NB_NEUTRAL_PRECISION:
-                final_results.append(0)
-            if maximum_precision == ME_NEGATIVE_PRECISION:
-                final_results.append(-1)
-            if maximum_precision == FCNN_POSITIVE_PRECISION:
-                final_results.append(1)
+            if best_method_name == "nb":
+                maximum_precision = max(NB_NEUTRAL_PRECISION + (best_method_precision / 20), ME_NEGATIVE_PRECISION, FCNN_POSITIVE_PRECISION)
+                if maximum_precision == (NB_NEUTRAL_PRECISION + (best_method_precision / 20)):
+                    final_results.append(0)
+                if maximum_precision == ME_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == FCNN_POSITIVE_PRECISION:
+                    final_results.append(1)
+            if best_method_name == "me":
+                maximum_precision = max(NB_NEUTRAL_PRECISION, ME_NEGATIVE_PRECISION + (best_method_precision / 20), FCNN_POSITIVE_PRECISION)
+                if maximum_precision == NB_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == (ME_NEGATIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(-1)
+                if maximum_precision == FCNN_POSITIVE_PRECISION:
+                    final_results.append(1)
+            if best_method_name == "fcnn":
+                maximum_precision = max(NB_NEUTRAL_PRECISION, ME_NEGATIVE_PRECISION, FCNN_POSITIVE_PRECISION + (best_method_precision / 20))
+                if maximum_precision == NB_NEUTRAL_PRECISION:
+                    final_results.append(0)
+                if maximum_precision == ME_NEGATIVE_PRECISION:
+                    final_results.append(-1)
+                if maximum_precision == (FCNN_POSITIVE_PRECISION + (best_method_precision / 20)):
+                    final_results.append(1)
         if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
             maximum_negative = max(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
             minimum_negative = min(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
