@@ -112,7 +112,6 @@ def tweet_box_refresher():
 
 
 # Main part of the code starts here
-
 # Twitter Authentication
 api = twitter_authenticator()
 

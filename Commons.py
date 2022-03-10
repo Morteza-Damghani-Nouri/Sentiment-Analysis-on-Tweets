@@ -1,5 +1,7 @@
 import tweepy
+import math
 from PIL import Image   # This library is used to resize the background image used in GUI
+from tensorflow import keras
 ENGLISH_CHARS = ["a", "b", "c",  "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z",  "A",  "B",  "C",  "D",  "E",  "F",  "G",  "H",  "I",  "J",  "K",  "L",  "M",  "N",  "O",  "P",  "Q",  "R",  "S",  "T",  "U",  "V",  "W",  "X",  "Y",  "Z", "'", "\""]
 
 
@@ -350,6 +352,156 @@ def evaluate(input_data, desired_tag):
         i += 1
     # print("The data tag list length is: " + str(len(data_tag_list)))
     return round((correct_counter / len(data_tag_list)) * 100, 2)
+
+
+# This function creates the neural network model for testing
+def create_model():
+    output_model = keras.Sequential()
+    output_model.add(keras.layers.Dense(64, activation="relu", input_shape=(47, )))
+    output_model.add(keras.layers.Dense(32, activation="relu"))
+    output_model.add(keras.layers.Dense(3, activation="softmax"))
+    output_model.summary()
+    output_model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+    return output_model
+
+
+# This function generates Naive Bayes model results for the input test file
+def nb_predictor(input_test_file_address, input_positive_dictionary, input_negative_dictionary, input_positive_words_count, input_negative_words_count, input_unique_words_count):
+    output_results = []
+    test_tweets_file = open(input_test_file_address, "rt", encoding="utf8")
+    while True:
+        tweet = test_tweets_file.readline().lower()
+        if tweet == "":
+            break
+
+        tweet = comment_smoother(tweet)
+        words_list = tweet.split(" ")
+        final_result = 0
+        for word in words_list:
+            if word in input_positive_dictionary:
+                positive_numerator = input_positive_dictionary[word] + 1
+            else:
+                positive_numerator = 1
+
+            if word in input_negative_dictionary:
+                negative_numerator = input_negative_dictionary[word] + 1
+            else:
+                negative_numerator = 1
+
+            final_result += math.log10((positive_numerator / (input_positive_words_count + input_unique_words_count)) / (negative_numerator / (input_negative_words_count + input_unique_words_count)))
+        if final_result > 0:
+            output_results.append(1)
+        if final_result == 0:
+            output_results.append(0)
+        if final_result < 0:
+            output_results.append(-1)
+
+    return output_results
+
+
+# This function generates Naive Bayes model results for the input test tweet and this function is used in online version code
+def nb_predictor_online_version(input_tweet, input_positive_dictionary, input_negative_dictionary, input_positive_words_count, input_negative_words_count, input_unique_words_count):
+    output_results = []
+    tweet = input_tweet.lower()
+    tweet = comment_smoother(tweet)
+    words_list = tweet.split(" ")
+    final_result = 0
+    for word in words_list:
+        if word in input_positive_dictionary:
+            positive_numerator = input_positive_dictionary[word] + 1
+        else:
+            positive_numerator = 1
+
+        if word in input_negative_dictionary:
+            negative_numerator = input_negative_dictionary[word] + 1
+        else:
+            negative_numerator = 1
+
+        final_result += math.log10((positive_numerator / (input_positive_words_count + input_unique_words_count)) / (
+                    negative_numerator / (input_negative_words_count + input_unique_words_count)))
+    if final_result > 0:
+        output_results.append(1)
+    if final_result == 0:
+        output_results.append(0)
+    if final_result < 0:
+        output_results.append(-1)
+    return output_results
+
+
+# This function generates Maximum Entropy model results for the input test file
+def me_predictor(input_test_file_address, input_desired_label, input_classifier):
+    output_results = []
+    test_tweets_list = nltk_input_list_generator(input_test_file_address, input_desired_label, [])
+    for tweet_tuple in test_tweets_list:
+        tweet_word_dictionary = tweet_tuple[0]
+        predicted_label = input_classifier.classify(tweet_word_dictionary)
+        output_results.append(predicted_label)
+    return output_results
+
+
+# This function generates Maximum Entropy model results for the input tweet and this function is used in online version code
+def me_predictor_online_version(input_tweet, input_classifier):
+    output_results = []
+    test_tweets_list = nltk_input_list_generator_online_version(input_tweet)
+    for tweet_tuple in test_tweets_list:
+        tweet_word_dictionary = tweet_tuple[0]
+        predicted_label = input_classifier.classify(tweet_word_dictionary)
+        output_results.append(predicted_label)
+    return output_results
+
+
+# This function generates FCNN model results for the input test file
+def fcnn_predictor(input_test_x_file_address, input_fcnn_model):
+    output_results = []
+    test_x = x_file_reader(input_test_x_file_address)
+    model_predictions = input_fcnn_model.predict(test_x)
+    for prediction in model_predictions:
+        maximum = max(prediction[0], prediction[1], prediction[2])
+        if maximum == prediction[0]:
+            output_results.append(1)
+        if maximum == prediction[1]:
+            output_results.append(0)
+        if maximum == prediction[2]:
+            output_results.append(-1)
+    return output_results
+
+
+# This function generates FCNN model results for the input tweet and this function is used in online version code
+def fcnn_predictor_online_version(input_tweet, input_fcnn_model):
+    output_results = []
+    test_x = [input_tweet]
+    model_predictions = input_fcnn_model.predict(test_x)
+    for prediction in model_predictions:
+        maximum = max(prediction[0], prediction[1], prediction[2])
+        if maximum == prediction[0]:
+            output_results.append(1)
+        if maximum == prediction[1]:
+            output_results.append(0)
+        if maximum == prediction[2]:
+            output_results.append(-1)
+    return output_results
+
+
+# This function calculates the precision of different models on different test data and initializes related variable
+def precision_calculator(input_results, input_desired_label):
+    counter = 0
+    for result in input_results:
+        if result == input_desired_label:
+            counter += 1
+    return round((counter / len(input_results)) * 100, 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
