@@ -22,7 +22,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
             maximum_positive = max(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
             minimum_positive = min(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
-            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            final_positive_precision = round(maximum_positive + (minimum_positive / 2), 2)
             if final_positive_precision >= FCNN_NEGATIVE_PRECISION:
                 final_results.append(1)
             else:
@@ -30,7 +30,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
             maximum_positive = max(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
             minimum_positive = min(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
-            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            final_positive_precision = round(maximum_positive + (minimum_positive / 2), 2)
             if final_positive_precision >= ME_NEGATIVE_PRECISION:
                 final_results.append(1)
             else:
@@ -38,7 +38,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
             maximum_positive = max(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
             minimum_positive = min(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
-            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            final_positive_precision = round(maximum_positive + (minimum_positive / 2), 2)
             if final_positive_precision >= NB_NEGATIVE_PRECISION:
                 final_results.append(1)
             else:
@@ -46,7 +46,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 1 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
             maximum_positive = max(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
             minimum_positive = min(NB_POSITIVE_PRECISION, ME_POSITIVE_PRECISION)
-            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            final_positive_precision = round(maximum_positive + (minimum_positive / 2), 2)
             if final_positive_precision >= FCNN_NEUTRAL_PRECISION:
                 final_results.append(1)
             else:
@@ -54,7 +54,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
             maximum_positive = max(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
             minimum_positive = min(NB_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
-            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            final_positive_precision = round(maximum_positive + (minimum_positive / 2), 2)
             if final_positive_precision >= ME_NEUTRAL_PRECISION:
                 final_results.append(1)
             else:
@@ -62,7 +62,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == 1:
             maximum_positive = max(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
             minimum_positive = min(ME_POSITIVE_PRECISION, FCNN_POSITIVE_PRECISION)
-            final_positive_precision = maximum_positive + (minimum_positive / 2)
+            final_positive_precision = round(maximum_positive + (minimum_positive / 2), 2)
             if final_positive_precision >= NB_NEUTRAL_PRECISION:
                 final_results.append(1)
             else:
@@ -118,7 +118,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 1:
             maximum_negative = max(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
             minimum_negative = min(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
-            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            final_negative_precision = round(maximum_negative + (minimum_negative / 2), 2)
             if final_negative_precision >= FCNN_POSITIVE_PRECISION:
                 final_results.append(-1)
             else:
@@ -126,7 +126,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == -1 and input_me_results[i] == 1 and input_fcnn_results[i] == -1:
             maximum_negative = max(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
             minimum_negative = min(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
-            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            final_negative_precision = round(maximum_negative + (minimum_negative / 2), 2)
             if final_negative_precision >= ME_POSITIVE_PRECISION:
                 final_results.append(-1)
             else:
@@ -134,7 +134,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 1 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
             maximum_negative = max(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
             minimum_negative = min(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
-            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            final_negative_precision = round(maximum_negative + (minimum_negative / 2), 2)
             if final_negative_precision >= NB_POSITIVE_PRECISION:
                 final_results.append(-1)
             else:
@@ -142,7 +142,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 1 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
             maximum_neutral = max(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
             minimum_neutral = min(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
-            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            final_neutral_precision = round(maximum_neutral + (minimum_neutral / 2), 2)
             if final_neutral_precision >= NB_POSITIVE_PRECISION:
                 final_results.append(0)
             else:
@@ -150,7 +150,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == 1 and input_fcnn_results[i] == 0:
             maximum_neutral = max(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
             minimum_neutral = min(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
-            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            final_neutral_precision = round(maximum_neutral + (minimum_neutral / 2), 2)
             if final_neutral_precision >= ME_POSITIVE_PRECISION:
                 final_results.append(0)
             else:
@@ -158,7 +158,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == 1:
             maximum_neutral = max(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
             minimum_neutral = min(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
-            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            final_neutral_precision = round(maximum_neutral + (minimum_neutral / 2), 2)
             if final_neutral_precision >= FCNN_POSITIVE_PRECISION:
                 final_results.append(0)
             else:
@@ -166,7 +166,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == -1:
             maximum_negative = max(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
             minimum_negative = min(ME_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
-            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            final_negative_precision = round(maximum_negative + (minimum_negative / 2), 2)
             if final_negative_precision >= NB_NEUTRAL_PRECISION:
                 final_results.append(-1)
             else:
@@ -174,7 +174,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
             maximum_negative = max(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
             minimum_negative = min(NB_NEGATIVE_PRECISION, FCNN_NEGATIVE_PRECISION)
-            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            final_negative_precision = round(maximum_negative + (minimum_negative / 2), 2)
             if final_negative_precision >= ME_NEUTRAL_PRECISION:
                 final_results.append(-1)
             else:
@@ -182,7 +182,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == -1 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
             maximum_negative = max(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
             minimum_negative = min(NB_NEGATIVE_PRECISION, ME_NEGATIVE_PRECISION)
-            final_negative_precision = maximum_negative + (minimum_negative / 2)
+            final_negative_precision = round(maximum_negative + (minimum_negative / 2), 2)
             if final_negative_precision >= FCNN_NEUTRAL_PRECISION:
                 final_results.append(-1)
             else:
@@ -190,7 +190,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == -1 and input_me_results[i] == 0 and input_fcnn_results[i] == 0:
             maximum_neutral = max(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
             minimum_neutral = min(ME_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
-            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            final_neutral_precision = round(maximum_neutral + (minimum_neutral / 2), 2)
             if final_neutral_precision >= NB_NEGATIVE_PRECISION:
                 final_results.append(0)
             else:
@@ -198,7 +198,7 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == -1 and input_fcnn_results[i] == 0:
             maximum_neutral = max(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
             minimum_neutral = min(NB_NEUTRAL_PRECISION, FCNN_NEUTRAL_PRECISION)
-            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            final_neutral_precision = round(maximum_neutral + (minimum_neutral / 2), 2)
             if final_neutral_precision >= ME_NEGATIVE_PRECISION:
                 final_results.append(0)
             else:
@@ -206,36 +206,23 @@ def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expe
         if input_nb_results[i] == 0 and input_me_results[i] == 0 and input_fcnn_results[i] == -1:
             maximum_neutral = max(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
             minimum_neutral = min(NB_NEUTRAL_PRECISION, ME_NEUTRAL_PRECISION)
-            final_neutral_precision = maximum_neutral + (minimum_neutral / 2)
+            final_neutral_precision = round(maximum_neutral + (minimum_neutral / 2), 2)
             if final_neutral_precision >= FCNN_NEGATIVE_PRECISION:
                 final_results.append(0)
             else:
                 final_results.append(-1)
         i += 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    counter = 0
+    for result in final_results:
+        if result == expected_tag:
+            counter += 1
+    if expected_tag == 1:
+        print("The combined model precision for positive tweets: " + str(round((counter / len(input_nb_results)) * 100, 2)))
+    if expected_tag == -1:
+        print("The combined model precision for negative tweets: " + str(round((counter / len(input_nb_results)) * 100, 2)))
+    if expected_tag == 0:
+        print("The combined model precision for neutral tweets: " + str(round((counter / len(input_nb_results)) * 100, 2)))
 
 
 # This function creates the neural network model for testing
