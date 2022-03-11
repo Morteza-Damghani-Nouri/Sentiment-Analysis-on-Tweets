@@ -215,7 +215,6 @@ def background_image_resize(input_width, input_height, input_image_address, outp
 
 # This function loads the negative and positive dictionaries and it is used in FCNN code
 def dictionary_loader_fcnn():
-    print("Loading dictionaries...")
     positive_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//positive_dictionary.txt"
     negative_dictionary_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//negative_dictionary.txt"
     positive_dictionary_file = open(positive_dictionary_address, "rt", encoding="utf8")

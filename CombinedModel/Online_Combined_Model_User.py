@@ -46,7 +46,6 @@ def final_evaluator():
         input_nb_results = nb_predictor_online_version(input_tweet, positive_tweets_dictionary, negative_tweets_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words, number_of_unique_words)
         input_me_results = me_predictor_online_version(input_tweet, me_classifier)
         input_fcnn_results = fcnn_predictor_online_version(data_loader_online_version(input_tweet, fcnn_model_dictionary), fcnn_model)
-        best_method_precision, best_method_name = best_method_finder()
         final_results = []
         i = 0
         while i < len(input_nb_results):
@@ -416,7 +415,7 @@ ME_NEUTRAL_PRECISION = precision_calculator(me_neutral_test_results, 0)
 FCNN_POSITIVE_PRECISION = precision_calculator(fcnn_positive_test_results, 1)
 FCNN_NEGATIVE_PRECISION = precision_calculator(fcnn_negative_test_results, -1)
 FCNN_NEUTRAL_PRECISION = precision_calculator(fcnn_neutral_test_results, 0)
-
+best_method_precision, best_method_name = best_method_finder()
 
 # Loading graphics
 window = Tk()

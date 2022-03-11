@@ -53,7 +53,6 @@ def file_generator(input_list, input_file_name):
     file.close()
 
 
-
 # Main part of the code starts here
 # Generating train lists
 model_dictionary = model_dictionary_generator()
