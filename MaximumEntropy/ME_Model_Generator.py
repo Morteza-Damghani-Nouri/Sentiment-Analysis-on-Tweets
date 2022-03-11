@@ -1,10 +1,12 @@
 import nltk
 import pickle   # This library is used to save the model on disk
 from Commons import nltk_input_list_generator
+import time    # This library is used to measure train time
 
 
 # Main part of the code starts here
 # Generating the train list
+start_time = time.time()
 positive_train_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//positive_train.txt"
 negative_train_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//negative_train.txt"
 neutral_train_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//neutral_train.txt"
@@ -24,6 +26,7 @@ print("Saving the model on disk...")
 model_file = open('MaximumEntropyClassifier', 'wb')
 pickle.dump(classifier, model_file)
 model_file.close()
+finish_time = time.time()
 
 # Generating the test list for positive test tweets
 positive_test_tweets_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//positive_test.txt"
@@ -74,6 +77,8 @@ for tweet_tuple in test_list:
     if main_label == predicted_label:
         true_categorization += 1
 print("The precision of the model for neutral tweets is: " + str(round((true_categorization / total_neutral_test_tweets) * 100, 2)) + " %")
+print("The train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
+
 
 
 

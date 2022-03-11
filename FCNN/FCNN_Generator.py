@@ -4,10 +4,12 @@ from keras import callbacks
 from Commons import y_list_generator
 from Commons import x_file_reader
 from Commons import evaluate
+import time    # This library is used to measure train time
 
 
 # Main part of the code starts here
 # Combining the positive_train_x and negative_train_x and neutral_train_x
+start_time = time.time()
 positive_train_x = x_file_reader("Train_X//positive_train_x.txt")
 negative_train_x = x_file_reader("Train_X//negative_train_x.txt")
 neutral_train_x = x_file_reader("Train_X//neutral_train_x.txt")
@@ -76,6 +78,7 @@ plt.show()
 
 # Saving the weights and biases of the model in a file
 fcnn_model.save_weights('Checkpoints//Other Trained Models//my_checkpoint1')
+finish_time = time.time()
 
 # Loading test data
 positive_test_x = x_file_reader("Test_X//positive_test_x.txt")
@@ -103,6 +106,8 @@ neutral_accuracy = evaluate(neutral_pred, "neutral")
 print("Positive test data accuracy: " + str(positive_accuracy) + str(" %"))
 print("Negative test data accuracy: " + str(negative_accuracy) + str(" %"))
 print("Neutral test data accuracy: " + str(neutral_accuracy) + str(" %"))
+print("The train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
+
 
 
 

@@ -1,4 +1,5 @@
 from Commons import smoother_function
+import time    # This library is used to measure train time
 
 
 # This function receives a list which is sorted by sorted function and produces the output dictionary file
@@ -50,6 +51,7 @@ def dictionary_generator(input_dictionary, input_address, output_address, catego
 
 
 # Main part of the code starts here
+start_time = time.time()
 positive_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//positive_train.txt"
 negative_train_data_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Train//negative_train.txt"
 
@@ -63,7 +65,7 @@ negative_words_dictionary = {}
 dictionary_generator(negative_words_dictionary, negative_train_data_address, negative_output_dictionary_address, "negative")
 dictionary_generator(positive_words_dictionary, positive_train_data_address, positive_output_dictionary_address, "positive")
 print("All of the dictionaries generated")
-
-
+finish_time = time.time()
+print("The train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
 
 
