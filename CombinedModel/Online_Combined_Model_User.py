@@ -42,7 +42,7 @@ def best_method_finder():
 # This function returns the final classification of combined model
 def final_evaluator():
     input_tweet = T.get("1.0", "end")
-    if input_tweet != "" and input_tweet != " " and input_tweet != " \n" and input_tweet != "\n\n":
+    if input_tweet != "" and input_tweet != " " and input_tweet != " \n" and input_tweet != "\n\n" and input_tweet != "Type tweet here...\n":
         input_nb_results = nb_predictor_online_version(input_tweet, positive_tweets_dictionary, negative_tweets_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words, number_of_unique_words)
         input_me_results = me_predictor_online_version(input_tweet, me_classifier)
         input_fcnn_results = fcnn_predictor_online_version(data_loader_online_version(input_tweet, fcnn_model_dictionary), fcnn_model)
@@ -454,16 +454,21 @@ T_scrollbar.config(command=T.yview)
 T_scrollbar.pack(side=RIGHT, fill=Y)
 
 # Creating button for receiving new tweets
-b1 = Button(window, text ="Analyze Text", command=final_evaluator, relief=RIDGE, borderwidth=3, font="calibri 12")
+b1 = Button(window, text ="Analyze Text", command=final_evaluator, relief=RIDGE, borderwidth=3, font="calibri 12", width=12)
+
+# Creating back button
+back_button = Button(window, text ="Back", relief=RIDGE, borderwidth=3, font="calibri 12", width=12)
+
 
 # Creating an Exit button
-b2 = Button(window, text ="Exit", command = window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12")
+b2 = Button(window, text ="Exit", command = window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12", width=12)
 
 tweets_frame.pack(pady=(20, 20))
 tweets_text_box.pack()
 input_text_box_frame.pack(pady=(10, 20))
 T.pack()
 b1.pack(pady=(0, 10))
+back_button.pack(pady=(0, 10))
 b2.pack()
 tk.mainloop()
 
