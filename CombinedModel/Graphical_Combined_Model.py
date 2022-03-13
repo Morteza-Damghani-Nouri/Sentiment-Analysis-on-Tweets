@@ -41,13 +41,10 @@ def main_window_loader(input_window):
     # Creating button for analyzing user tweets
     background_image_resize(60, 60, "User_Icon.png", "User_Icon_Resized.png")
     user_icon = PhotoImage(file="User_Icon_Resized.png")
-    user_button = Button(input_window, text="Receive Tweets From User", relief=RIDGE, borderwidth=3, font="calibri 12",
-                         bg="white", image=user_icon, compound=LEFT, width=250, height=60,
-                         command=lambda: user_button_handler(input_window))
+    user_button = Button(input_window, text="Receive Tweets From User", relief=RIDGE, borderwidth=3, font="calibri 12", bg="white", image=user_icon, compound=LEFT, width=250, height=60, command=lambda: user_button_handler(input_window))
 
     # Creating exit button
-    exit_button = Button(input_window, text="Exit", command=input_window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12",
-                         width=12, bg="white")
+    exit_button = Button(input_window, text="Exit", command=input_window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12", width=12, bg="white")
 
     twitter_button.pack(pady=(int(screen_height * 0.35), 0))
     user_button.pack(pady=(20, 0))
