@@ -32,7 +32,7 @@ def best_method_finder():
 
 
 # This function returns the final classification of combined model
-def final_evaluator(input_nb_results, input_me_results, input_fcnn_results, expected_tag):
+def final_predictor(input_nb_results, input_me_results, input_fcnn_results, expected_tag):
     best_method_precision, best_method_name = best_method_finder()
     final_results = []
     i = 0
@@ -394,11 +394,11 @@ FCNN_NEGATIVE_PRECISION = precision_calculator(fcnn_negative_test_results, -1)
 FCNN_NEUTRAL_PRECISION = precision_calculator(fcnn_neutral_test_results, 0)
 
 # Calculating combined model precision for positive test data
-final_evaluator(nb_positive_test_results, me_positive_test_results, fcnn_positive_test_results, 1)
+final_predictor(nb_positive_test_results, me_positive_test_results, fcnn_positive_test_results, 1)
 
 # Calculating combined model precision for negative test data
-final_evaluator(nb_negative_test_results, me_negative_test_results, fcnn_negative_test_results, -1)
+final_predictor(nb_negative_test_results, me_negative_test_results, fcnn_negative_test_results, -1)
 
 # Calculating combined model precision for neutral test data
-final_evaluator(nb_neutral_test_results, me_neutral_test_results, fcnn_neutral_test_results, 0)
+final_predictor(nb_neutral_test_results, me_neutral_test_results, fcnn_neutral_test_results, 0)
 

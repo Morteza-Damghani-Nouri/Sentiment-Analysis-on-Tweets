@@ -368,8 +368,8 @@ def final_evaluator():
 
 
 # This function removes the foreground text in text box
-def text_box_foreground_eraser(event):
-    T.delete("1.0", "end")
+def text_box_foreground_eraser(input_T):
+    input_T.delete("1.0", "end")
 
 
 # Main part of the code starts here
