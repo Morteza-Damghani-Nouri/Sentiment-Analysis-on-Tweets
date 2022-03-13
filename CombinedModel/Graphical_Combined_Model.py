@@ -18,6 +18,49 @@ from Commons import data_loader_online_version
 from Commons import precision_calculator
 
 
+# This function loads the main window widgets
+def main_window_loader(input_window):
+    input_window.title("Sentiment Analyzer")
+
+    # Adjusting window size
+    screen_width = input_window.winfo_screenwidth()
+    screen_height = input_window.winfo_screenheight()
+    input_window.geometry(str(screen_width) + "x" + str(screen_height))
+    background_image_resize(screen_width, screen_height, "Background_Image.png", "Background_Image_Resized.png")
+
+    # Setting GUI background image
+    img = PhotoImage(file="Background_Image_Resized.png")
+    label = Label(input_window, image=img, border=0)
+    label.place(x=0, y=0)
+
+    # Creating button for analyzing input tweet
+    background_image_resize(50, 50, "Twitter_Icon.png", "Twitter_Icon_Resized.png")
+    twitter_icon = PhotoImage(file="Twitter_Icon_Resized.png")
+    twitter_button = Button(input_window, text="Receive Tweets From Twitter", relief=RIDGE, borderwidth=3, font="calibri 12", image=twitter_icon, compound=LEFT, bg="white", width=250, height=60, command=lambda: twitter_button_handler(input_window))
+
+    # Creating button for analyzing user tweets
+    background_image_resize(60, 60, "User_Icon.png", "User_Icon_Resized.png")
+    user_icon = PhotoImage(file="User_Icon_Resized.png")
+    user_button = Button(input_window, text="Receive Tweets From User", relief=RIDGE, borderwidth=3, font="calibri 12",
+                         bg="white", image=user_icon, compound=LEFT, width=250, height=60,
+                         command=lambda: user_button_handler(input_window))
+
+    # Creating exit button
+    exit_button = Button(input_window, text="Exit", command=input_window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12",
+                         width=12, bg="white")
+
+    twitter_button.pack(pady=(int(screen_height * 0.35), 0))
+    user_button.pack(pady=(20, 0))
+    exit_button.pack(pady=(20, 0))
+    tk.mainloop()
+
+
+# This is the handler of back button in user page
+def back_button_handler(input_window):
+    clear_window(input_window)
+    main_window_loader(input_window)
+
+
 # This function returns the final classification of combined model
 def twitter_final_predictor(input_tweet, input_tweets_text_box):
     if input_tweet != "" and input_tweet != " " and input_tweet != " \n" and input_tweet != "\n\n":
@@ -689,8 +732,8 @@ def best_method_finder():
         return maximum_precision, "fcnn"
 
 
-# This function removes all the widgets in the main window
-def clear_main_window(input_window):
+# This function removes all the widgets in the input window
+def clear_window(input_window):
    for widget in input_window.winfo_children():
       widget.pack_forget()
 
@@ -735,14 +778,29 @@ def tweet_box_refresher(input_T, input_tweets_text_box):
 # This function is called when twitter_button is pressed and it loads the graphics of twitter page
 def twitter_button_handler(input_window):
     # Clearing previous window
-    clear_main_window(input_window)
+    clear_window(input_window)
 
-    input_window.title("Twitter Sentiment Analyzer")
+    # fetching the top 50 trends topics in Washington
+    print("Receiving trend topics...")
+    trends = api.get_place_trends(id=woeid)
+    trend_topics_names = []
+    for value in trends:
+        for trend in value['trends']:
+            trend_topics_names.append(trend['name'])
+    print("Receiving tweets...")
+    received_tweets = []
+    i = 0
+    while i < 4:
+        results = tweepy.Cursor(api.search_tweets, q=trend_topics_names[i], tweet_mode="extended").items(10)
+        for result in results:
+            if result.lang == "en":
+                received_tweets.append(result.full_text)
+        i += 1
 
     # Setting GUI background image
-    background_image_resize(screen_width, screen_height, "Background_Image.png", "Background_Image_Resized.png")
+    input_window.title("Twitter Sentiment Analyzer")
     img = PhotoImage(file="Background_Image_Resized.png")
-    label = Label(window, image=img, border=0)
+    label = Label(input_window, image=img, border=0)
     label.place(x=0, y=0)
 
     # Creating tweets frame
@@ -771,7 +829,7 @@ def twitter_button_handler(input_window):
     b1 = Button(input_window, text="Receive New Tweets", relief=RIDGE, borderwidth=3, font="calibri 12", image=icon, compound=LEFT, bg="white", command=lambda: tweet_box_refresher(T, tweets_text_box), width=200)
 
     # Creating back button
-    back_button = Button(input_window, text="Back", relief=RIDGE, borderwidth=3, font="calibri 12", width=10, bg="white")
+    back_button = Button(input_window, text="Back", relief=RIDGE, borderwidth=3, font="calibri 12", width=10, bg="white", command=lambda: back_button_handler(input_window))
 
     # Creating an Exit button
     b2 = Button(input_window, text="Exit", command=input_window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12", bg="white", width=10)
@@ -800,12 +858,11 @@ def twitter_button_handler(input_window):
 # This function is called when user_button is pressed and it loads the graphics of user page
 def user_button_handler(input_window):
     # Clearing previous window
-    clear_main_window(input_window)
+    clear_window(input_window)
 
     input_window.title("User Sentiment Analyzer")
 
     # Setting GUI background image
-    background_image_resize(screen_width, screen_height, "Background_Image.png", "Background_Image_Resized.png")
     img = PhotoImage(file="Background_Image_Resized.png")
     label = Label(input_window, image=img, border=0)
     label.place(x=0, y=0)
@@ -837,7 +894,7 @@ def user_button_handler(input_window):
     b1 = Button(input_window, text="Analyze Text", command=lambda: user_final_predictor(T, tweets_text_box), relief=RIDGE, borderwidth=3, font="calibri 12", image=icon, width=150, bg="white", compound=LEFT)
 
     # Creating back button
-    back_button = Button(input_window, text="Back", relief=RIDGE, borderwidth=3, font="calibri 12", width=10, bg="white")
+    back_button = Button(input_window, text="Back", relief=RIDGE, borderwidth=3, font="calibri 12", width=10, bg="white", command=lambda: back_button_handler(input_window))
 
     # Creating an Exit button
     b2 = Button(input_window, text="Exit", command=input_window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12", width=10, bg="white")
@@ -912,55 +969,10 @@ best_method_precision, best_method_name = best_method_finder()
 # WOEID of Washington
 woeid = 2514815
 
-# fetching the top 50 trends topics in Washington
-print("Receiving trend topics...")
-trends = api.get_place_trends(id=woeid)
-trend_topics_names = []
-for value in trends:
-    for trend in value['trends']:
-        trend_topics_names.append(trend['name'])
-print("Receiving tweets...")
-received_tweets = []
-i = 0
-while i < 4:
-    results = tweepy.Cursor(api.search_tweets, q=trend_topics_names[i], tweet_mode="extended").items(10)
-    for result in results:
-        if result.lang == "en":
-            received_tweets.append(result.full_text)
-    i += 1
-
 # Loading graphics
 window = Tk()
-window.title("Sentiment Analyzer")
+main_window_loader(window)
 
-# Adjusting window size
-screen_width = window.winfo_screenwidth()
-screen_height = window.winfo_screenheight()
-window.geometry(str(screen_width) + "x" + str(screen_height))
-background_image_resize(screen_width, screen_height, "Background_Image.png", "Background_Image_Resized.png")
-
-# Setting GUI background image
-img = PhotoImage(file="Background_Image_Resized.png")
-label = Label(window, image=img, border=0)
-label.place(x=0, y=0)
-
-# Creating button for analyzing input tweet
-background_image_resize(50, 50, "Twitter_Icon.png", "Twitter_Icon_Resized.png")
-twitter_icon = PhotoImage(file="Twitter_Icon_Resized.png")
-twitter_button = Button(window, text ="Receive Tweets From Twitter", relief=RIDGE, borderwidth=3, font="calibri 12", image=twitter_icon, compound=LEFT, bg="white", width=250, height=60, command=lambda: twitter_button_handler(window))
-
-# Creating button for analyzing user tweets
-background_image_resize(60, 60, "User_Icon.png", "User_Icon_Resized.png")
-user_icon = PhotoImage(file="User_Icon_Resized.png")
-user_button = Button(window, text ="Receive Tweets From User", relief=RIDGE, borderwidth=3, font="calibri 12", bg="white", image=user_icon, compound=LEFT, width=250, height=60, command=lambda: user_button_handler(window))
-
-# Creating exit button
-exit_button = Button(window, text ="Exit", command = window.destroy, relief=RIDGE, borderwidth=3, font="calibri 12", width=12, bg="white")
-
-twitter_button.pack(pady=(int(screen_height * 0.35), 0))
-user_button.pack(pady=(20, 0))
-exit_button.pack(pady=(20, 0))
-tk.mainloop()
 
 
 
