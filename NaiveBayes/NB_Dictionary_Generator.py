@@ -66,6 +66,6 @@ dictionary_generator(negative_words_dictionary, negative_train_data_address, neg
 dictionary_generator(positive_words_dictionary, positive_train_data_address, positive_output_dictionary_address, "positive")
 print("All of the dictionaries generated")
 finish_time = time.time()
-print("The train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
+print("Train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
 
 

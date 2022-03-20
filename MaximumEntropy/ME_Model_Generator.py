@@ -20,7 +20,7 @@ numIterations = 20
 algorithm = nltk.classify.MaxentClassifier.ALGORITHMS[0]
 print("Training the model...")
 classifier = nltk.MaxentClassifier.train(train_list, algorithm, max_iter=numIterations)
-classifier.show_most_informative_features(100)
+
 # Saving the model on disk...
 print("Saving the model on disk...")
 model_file = open('MaximumEntropyClassifier', 'wb')
@@ -77,7 +77,7 @@ for tweet_tuple in test_list:
     if main_label == predicted_label:
         true_categorization += 1
 print("The precision of the model for neutral tweets is: " + str(round((true_categorization / total_neutral_test_tweets) * 100, 2)) + " %")
-print("The train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
+print("Train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
 
 
 

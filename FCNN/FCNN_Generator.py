@@ -106,7 +106,7 @@ neutral_accuracy = evaluate(neutral_pred, "neutral")
 print("Positive test data accuracy: " + str(positive_accuracy) + str(" %"))
 print("Negative test data accuracy: " + str(negative_accuracy) + str(" %"))
 print("Neutral test data accuracy: " + str(neutral_accuracy) + str(" %"))
-print("The train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
+print("Train time is: " + str(round(finish_time - start_time, 2)) + " seconds")
 
 
 

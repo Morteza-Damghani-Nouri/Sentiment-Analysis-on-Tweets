@@ -6,6 +6,7 @@ from Commons import nb_predictor
 from Commons import me_predictor
 from Commons import fcnn_predictor
 from Commons import precision_calculator
+import time
 
 
 # This function finds the most accurate method among avalaible methods according to precision
@@ -353,6 +354,7 @@ def final_predictor(input_nb_results, input_me_results, input_fcnn_results, expe
 
 # Main part of the code starts here
 # Loading saved models
+start_time = time.time()
 print("Loading saved models...")
 positive_tweets_dictionary, negative_tweets_dictionary, total_number_of_positive_dictionary_words, total_number_of_negative_dictionary_words = dictionary_loader()
 me_model_file = open("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer Engineering Final Project//MaximumEntropy//MaximumEntropyClassifier", "rb")
@@ -361,6 +363,7 @@ me_model_file.close()
 fcnn_model = create_model()
 fcnn_model.load_weights("E://MortezaDamghaniNouri//MyCodes//Python Codes//Computer Engineering Final Project//FCNN//Checkpoints//Main Trained Model//my_checkpoint1")
 number_of_unique_words = unique_words_counter(positive_tweets_dictionary, negative_tweets_dictionary)
+finish_time = time.time()
 
 # Evaluating the positive test tweets
 positive_test_tweets_file_address = "E://MortezaDamghaniNouri//Computer Engineering//Semesters//9//Computer Engineering Final Project//Final Decision Files//Dataset//Test//positive_test.txt"
@@ -401,4 +404,8 @@ final_predictor(nb_negative_test_results, me_negative_test_results, fcnn_negativ
 
 # Calculating combined model precision for neutral test data
 final_predictor(nb_neutral_test_results, me_neutral_test_results, fcnn_neutral_test_results, 0)
+print("Loading trained models time is: " + str(round(finish_time - start_time, 2)) + " seconds")
+
+
+
 
